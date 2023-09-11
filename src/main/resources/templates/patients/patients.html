@@ -14,17 +14,37 @@
     <th>Last Name</th>
     <th>DOB</th>
     <th>Diagnosis</th>
+    <th>Actions</th> <!-- Add a new column for actions -->
   </tr>
   </thead>
   <tbody>
+
   <tr th:each="patient : ${patients}">
     <td th:text="${patient.id}"></td>
     <td th:text="${patient.first_name}"></td>
     <td th:text="${patient.last_name}"></td>
     <td th:text="${patient.dob}"></td>
     <td th:text="${patient.diagnosis}"></td>
+    <td>
+      <a th:href="@{'/delete-patient/' + ${patient.id}}" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>
+    </td>
   </tr>
+
+<!--<tr th:each="patient : ${patients}">-->
+<!--  <td th:text="${patient.id}"></td>-->
+<!--  <td th:text="${patient.first_name}"></td>-->
+<!--  <td th:text="${patient.last_name}"></td>-->
+<!--  <td th:text="${patient.dob}"></td>-->
+<!--  <td th:text="${patient.diagnosis}"></td>-->
+<!--  <td>-->
+<!--    <form th:action="@{'/delete-patient/' + ${patient.id}}" method="post">-->
+<!--      <input type="hidden" name="_method" value="DELETE" />-->
+<!--      <button type="submit">Delete</button>-->
+<!--    </form>-->
+<!--</tr>-->
+
   </tbody>
 </table>
+<a href="/addPatient">Add</a>
 </body>
 </html>

@@ -9,9 +9,11 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
+import java.util.Optional;
 /*
 @Controller
 public class PatientsController {
@@ -32,7 +34,7 @@ public class PatientsController {
     }
 }*/
 
-/*@Controller
+@Controller
 public class PatientsController {
 
     private PatientsRepository patientsRepository;
@@ -58,15 +60,34 @@ public class PatientsController {
         PatientsModel savedPatient = patientsRepository.save(patient);
         model.addAttribute("id", savedPatient.getId());
 
-        return "patients/patientView";
+//        return "patients/patientView";
+        return "redirect:/patients";
     }
 
     @ModelAttribute
     public void addAttributes(Model model) {
-        model.addAttribute("msg", "Welcome to the Patients System!");
+//        model.addAttribute("msg", "Welcome to the Patients System!");
     }
-}*/
 
+    @GetMapping("/patients")
+    public String listPatients(Model model) {
+        List<PatientsModel> patients = patientsRepository.findAll();
+        model.addAttribute("patients", patients);
+        return "patients/patients";
+    }
+
+    @GetMapping("/delete-patient/{patientId}")
+    public String deletePatient(@PathVariable Long patientId, Model model) {
+        // Check if the patient exists
+        Optional<PatientsModel> patientOptional = patientsRepository.findById(patientId);
+        if (patientOptional.isPresent()) {
+            patientsRepository.deleteById(patientId);
+        }
+        // Redirect back to the patient list
+        return "redirect:/patients";
+    }
+
+}
 /*@Controller
 public class PatientsController {
 
@@ -94,16 +115,14 @@ public class PatientsController {
     public String listPatients(Model model) {
         List<PatientsModel> patients = patientsRepository.findAll();
         model.addAttribute("patients", patients);
-        return "patients/patientList";
+        return "patients/patients";
     }
+
 }*/
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 
-@Controller
+
+/*@Controller
 public class PatientsController {
 
     @Autowired
@@ -116,4 +135,4 @@ public class PatientsController {
         return "patients/patients"; // The name of your Thymeleaf HTML template
 //        return "dashboard/user_dash";
     }
-}
+}*/
