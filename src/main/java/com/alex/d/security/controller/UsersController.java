@@ -43,7 +43,7 @@ public class UsersController {
         System.out.println("Register request " + userModel);
 //        String encodedPassword = passwordEncoder.encode(userModel.getPassword());
 //        userModel.setPassword(encodedPassword);
-        UserModel registeredUser = userService.registerUser(userModel.getName(), userModel.getLogin(), userModel.getPassword());
+        UserModel registeredUser = userService.registerUser(userModel.getLogin(), userModel.getPassword(), userModel.getName());
         return registeredUser == null ? "err/registration_error" : "redirect:/login";
     }
 

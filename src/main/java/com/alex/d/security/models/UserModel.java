@@ -3,6 +3,7 @@ package com.alex.d.security.models;
 
 import jakarta.persistence.*;
 import org.springframework.stereotype.Repository;
+
 import java.util.Objects;
 
 
@@ -13,23 +14,23 @@ public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     Long id;
+    private Long id;
 
     @Column(name = "name")
-     String username;
+    private String name;
 
     @Column(name = "login")
-     String login;
+    private String login;
 
     @Column(name = "password")
-     String password;
+    String password;
 
 
     public UserModel() {
     }
 
     public UserModel(String name, String password, String login) {
-        this.username = name;
+        this.name = name;
         this.password = password;
         this.login = login;
     }
@@ -43,11 +44,11 @@ public class UserModel {
     }
 
     public String getName() {
-        return username;
+        return name;
     }
 
     public void setName(String name) {
-        this.username = name;
+        this.name = name;
     }
 
     public String getLogin() {
@@ -71,12 +72,12 @@ public class UserModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserModel userModel = (UserModel) o;
-        return Objects.equals(id, userModel.id) && Objects.equals(username, userModel.username) && Objects.equals(login, userModel.login) && Objects.equals(password, userModel.password);
+        return Objects.equals(id, userModel.id) && Objects.equals(name, userModel.name) && Objects.equals(login, userModel.login) && Objects.equals(password, userModel.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, login, password);
+        return Objects.hash(id, name, login, password);
     }
 
     @Override
