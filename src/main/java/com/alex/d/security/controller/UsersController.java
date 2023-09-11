@@ -1,18 +1,18 @@
 package com.alex.d.security.controller;
 
+import com.alex.d.security.models.PatientsModel;
 import com.alex.d.security.models.UserModel;
+import com.alex.d.security.repositories.PatientsRepository;
 import com.alex.d.security.service.UserService;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 @Controller
 public class UsersController {
@@ -43,7 +43,7 @@ public class UsersController {
         System.out.println("Register request " + userModel);
 //        String encodedPassword = passwordEncoder.encode(userModel.getPassword());
 //        userModel.setPassword(encodedPassword);
-        UserModel registeredUser = userService.registerUser(userModel.getLogin(), userModel.getPassword(), userModel.getName());
+        UserModel registeredUser = userService.registerUser(userModel.getName(), userModel.getLogin(), userModel.getPassword());
         return registeredUser == null ? "err/registration_error" : "redirect:/login";
     }
 
@@ -53,7 +53,10 @@ public class UsersController {
         UserModel authenticate = userService.authenthicate(userModel.getLogin(), userModel.getPassword());
         if (authenticate != null) {
             model.addAttribute("userLogin", authenticate.getLogin());
-            return "dashboard/user_dash";
+//            return "dashboard/user_dash";
+            return "redirect:/patients";
+
+
         } else {
             return "err/error";
         }

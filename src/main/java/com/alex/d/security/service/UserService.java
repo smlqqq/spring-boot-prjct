@@ -19,7 +19,7 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
     public UserModel registerUser(String name, String login, String password) {
-        if (login != null && !login.isEmpty() && password != null && !password.isEmpty() && name != null && !name.isEmpty()) {
+        if (name != null && !name.isEmpty() &&login != null && !login.isEmpty() && password != null && !password.isEmpty()) {
             if (userRepository.findFirstByLogin(login).isPresent()) {
                 System.out.println("This login is in use");
                 return null;

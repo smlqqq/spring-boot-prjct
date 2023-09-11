@@ -65,11 +65,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Login page</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <form method="post" action="/login" th:object="${loginRequest}">
-    <!--<div class="form__field">
+    <div class="form__field">
         <label for="login">Login</label>
         <input id="login" type="text" name="login" class="form__input" placeholder="Login" required>
     </div>
@@ -81,18 +81,20 @@
 
     <div class="form__field">
         <input type="submit" value="Sign In">
-    </div>-->
-    <div class="log-form">
-        <h2>Login to your account</h2>
-        <form>
-            <input type="text" title="login" placeholder="login" />
-            <input type="password" title="password" placeholder="password" />
-            <button type="submit" class="btn">Login</button>
-            <a class="forgot" href="registration.html">Forgot Username?</a>
-        </form>
-    </div><!--end log form -->
-</form>
+    </div>
 
+
+<!--    <div class="log-form">-->
+<!--        <h2>Login to your account</h2>-->
+<!--        <form>-->
+<!--            <input id="login" type="text" name="login" class="form__input" placeholder="Login" required>-->
+<!--            <input id="password" type="password" name="password" class="form__input" placeholder="Password" required>-->
+<!--            <button type="submit" class="btn">Login</button>-->
+<!--            <a class="registration" href="user/registration">Registration</a>-->
+<!--        </form>-->
+<!--    </div>&lt;!&ndash;end log form &ndash;&gt;-->
+
+</form>
 </body>
 </html>
 

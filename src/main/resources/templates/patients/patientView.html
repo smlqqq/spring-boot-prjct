@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Patient Information</title>
+</head>
+<body>
+<h1>Patient Information</h1>
+<p>ID: <span th:text="${id}"></span></p>
+<p>First Name: <span th:text="${patient.first_name}"></span></p>
+<p>Last Name: <span th:text="${patient.last_name}"></span></p>
+<p>Day of Birth: <span th:text="${patient.dob}"></span></p>
+<p>Diagnosis: <span th:text="${patient.diagnosis}"></span></p>
+<p th:text="${msg}"></p>
+</body>
+</html>
