@@ -3,7 +3,7 @@
 <head>
     <meta charset="ISO-8859-1">
     <title>Register page</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
 <!--<div class="form">
@@ -12,26 +12,28 @@
     <div class="grid">
 
 <!--        <form action="https://httpbin.org/post" method="POST" class="form login">-->
+
+        <div class="form__field">
+            <label for="name">
+                <svg class="icon">
+                    <!--                        <use xlink:href="#icon-user"></use>-->
+                </svg>
+                <span class="hidden">Name</span></label>
+            <input autocomplete="name" id="name" type="text" name="name" class="form__input" placeholder="Name"
+                   required>
+        </div>
+
         <form method="post" action="/register" th:object="${registerRequest}">
             <div class="form__field">
                 <label for="login">
                     <svg class="icon">
-                        <use xlink:href="#icon-user"></use>
+<!--                        <use xlink:href="#icon-user"></use>-->
                     </svg>
                     <span class="hidden">Login</span></label>
                 <input autocomplete="username" id="login" type="text" name="login" class="form__input"
                        placeholder="Login" required>
             </div>
 
-<!--            <div class="form__field">-->
-<!--                <label for="email">-->
-<!--                    <svg class="icon">-->
-<!--                        <use xlink:href="#icon-user"></use>-->
-<!--                    </svg>-->
-<!--                    <span class="hidden">Login</span></label>-->
-<!--                <input autocomplete="email" id="email" type="text" name="email" class="form__input" placeholder="Email"-->
-<!--                       required>-->
-<!--            </div>-->
 
             <div class="form__field">
                 <label for="password">

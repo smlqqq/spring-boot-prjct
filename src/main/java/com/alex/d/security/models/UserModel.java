@@ -16,7 +16,7 @@ public class UserModel {
      Long id;
 
     @Column(name = "name")
-     String name;
+     String username;
 
     @Column(name = "login")
      String login;
@@ -29,7 +29,7 @@ public class UserModel {
     }
 
     public UserModel(String name, String password, String login) {
-        this.name = name;
+        this.username = name;
         this.password = password;
         this.login = login;
     }
@@ -43,11 +43,11 @@ public class UserModel {
     }
 
     public String getName() {
-        return name;
+        return username;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.username = name;
     }
 
     public String getLogin() {
@@ -71,12 +71,12 @@ public class UserModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserModel userModel = (UserModel) o;
-        return Objects.equals(id, userModel.id) && Objects.equals(name, userModel.name) && Objects.equals(login, userModel.login) && Objects.equals(password, userModel.password);
+        return Objects.equals(id, userModel.id) && Objects.equals(username, userModel.username) && Objects.equals(login, userModel.login) && Objects.equals(password, userModel.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, login, password);
+        return Objects.hash(id, username, login, password);
     }
 
     @Override
