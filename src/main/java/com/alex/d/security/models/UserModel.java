@@ -2,27 +2,42 @@ package com.alex.d.security.models;
 
 
 import jakarta.persistence.*;
+import com.alex.d.security.models.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Repository;
-import java.util.Objects;
+
+import java.util.*;
 
 
 @Repository
 @Entity
 @Table(name = "users")
-public class UserModel {
+public class UserModel  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-     Long id;
+    private Long id;
 
     @Column(name = "name")
-     String name;
+    private String name;
 
     @Column(name = "login")
-     String login;
+    private String login;
 
     @Column(name = "password")
-     String password;
+    private String password;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Role> roles;
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "role", joinColumns = @JoinColumn(name = "id"), inverseJoinColumns = @JoinColumn(name = "id"))
+    private Set<Role> role = new HashSet<>();
+
+//    @Column(name = "enabled")
+//    private Integer enabled = 1;
 
 
     public UserModel() {
@@ -57,6 +72,58 @@ public class UserModel {
     public void setLogin(String login) {
         this.login = login;
     }
+
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        SimpleGrantedAuthority authority = new SimpleGrantedAuthority(role.name());
+//        return List.of(authority);
+//    }
+
+    public Set<Role> getRole() {
+        return role;
+    }
+
+    public void setRole(Set<Role> role) {
+        this.role = role;
+    }
+
+
+//    public int getEnabled() {
+//        return enabled;
+//    }
+//
+//    public void setEnabled(int enabled) {
+//        this.enabled = enabled;
+//    }
+
+/*    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return false;
+    }*/
 
     public String getPassword() {
         return password;
