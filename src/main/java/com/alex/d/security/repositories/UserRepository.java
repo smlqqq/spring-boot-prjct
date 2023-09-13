@@ -11,5 +11,6 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<UserModel, Integer> {
     Optional<UserModel> findByLoginAndPassword(String login, String password);
     Optional<UserModel> findFirstByLogin (String login);
+    Optional<UserModel> findByLogin (String login);
 
 }

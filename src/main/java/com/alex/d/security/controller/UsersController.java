@@ -41,8 +41,8 @@ public class UsersController {
     @PostMapping("/register")
     public String register(@ModelAttribute UserModel userModel) {
         System.out.println("Register request " + userModel);
-        String encodedPassword = passwordEncoder.encode(userModel.getPassword());
-        userModel.setPassword(encodedPassword);
+       /* String encodedPassword = passwordEncoder.encode(userModel.getPassword());
+        userModel.setPassword(encodedPassword);*/
         UserModel registeredUser = userService.registerUser(userModel.getName(), userModel.getLogin(), userModel.getPassword());
         return registeredUser == null ? "err/registration_error" : "redirect:/login";
     }
