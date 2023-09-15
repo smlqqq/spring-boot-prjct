@@ -5,46 +5,108 @@
   <title>Patient List</title>
 </head>
 <body>
-<h1>Welcome <span th:text="${userLogin}"></span></h1>
+<h1>Welcome <span th:text="${userName}"></span></h1>
 <table>
   <thead>
   <tr>
-    <th>ID</th>
+<!--    <th>ID</th>-->
     <th>First Name</th>
     <th>Last Name</th>
-    <th>DOB</th>
-    <th>Diagnosis</th>
+<!--    <th>DOB</th>-->
+<!--    <th>Diagnosis</th>-->
     <th>Actions</th> <!-- Add a new column for actions -->
   </tr>
   </thead>
   <tbody>
 
   <tr th:each="patient : ${patients}">
-    <td th:text="${patient.id}"></td>
+<!--    <td th:text="${patient.id}"></td>-->
     <td th:text="${patient.first_name}"></td>
     <td th:text="${patient.last_name}"></td>
-    <td th:text="${patient.dob}"></td>
-    <td th:text="${patient.diagnosis}"></td>
+<!--    <td th:text="${patient.dob}"></td>-->
+<!--    <td th:text="${patient.diagnosis}"></td>-->
     <td>
-      <a th:href="@{'/delete-patient/' + ${patient.id}}" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>
+<!--      <a th:href="@{'/patient/' + ${patient.id}}" >Get details</a>-->
+<!--      <a th:href="@{'/delete-patient/' + ${patient.id}}" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>-->
+      <button th:attr="patient=${patient.id}" class="get-view-button">Get info</button>
+      <button th:attr="data-patient-id=${patient.id}" class="delete-button">Delete</button>
     </td>
   </tr>
 
-<!--<tr th:each="patient : ${patients}">-->
-<!--  <td th:text="${patient.id}"></td>-->
-<!--  <td th:text="${patient.first_name}"></td>-->
-<!--  <td th:text="${patient.last_name}"></td>-->
-<!--  <td th:text="${patient.dob}"></td>-->
-<!--  <td th:text="${patient.diagnosis}"></td>-->
-<!--  <td>-->
-<!--    <form th:action="@{'/delete-patient/' + ${patient.id}}" method="post">-->
-<!--      <input type="hidden" name="_method" value="DELETE" />-->
-<!--      <button type="submit">Delete</button>-->
-<!--    </form>-->
-<!--</tr>-->
+  <!-- JavaScript code for handling the delete confirmation -->
+  <script>
+    const deleteButtons = document.querySelectorAll('.delete-button');
+
+    deleteButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const patientId = button.getAttribute('data-patient-id');
+        const confirmed = confirm('Are you sure you want to delete this patient?');
+
+        if (confirmed) {
+          window.location.href = '/delete-patient/' + patientId;
+        }
+      });
+    });
+
+    const getViewButton = document.querySelectorAll('.get-view-button');
+    getViewButton.forEach(button => {
+      button.addEventListener('click', () => {
+        const patientId = button.getAttribute('patient');
+        window.location.href = '/patient/' + patientId;
+      });
+    });
+
+  </script>
+
+
+<!--  /* Style the table */-->
+  <style>
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    /* Style table headers */
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    /* Style the "Actions" column */
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    /* Style the "Actions" column */
+    .actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .delete-link {
+      color: red;
+      cursor: pointer; /* Add a cursor pointer to indicate clickability */
+    }
+
+    .details-link {
+      color: blue;
+      cursor: pointer;
+    }
+  </style>
+
 
   </tbody>
 </table>
 <a href="/addPatient">Add</a>
+<a href="/logout">Log out</a>
+
 </body>
 </html>

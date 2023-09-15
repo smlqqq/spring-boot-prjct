@@ -27,8 +27,8 @@ public class UserService {
             UserModel userModel = new UserModel();
             userModel.setName(name);
             userModel.setLogin(login);
-            userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
-//            userModel.setPassword(password);
+//            userModel.setPassword(passwordEncoder.encode(userModel.getPassword()));
+            userModel.setPassword(password);
             return userRepository.save(userModel);
         } else {
             System.out.println("Incorrect data");
@@ -40,14 +40,13 @@ public class UserService {
         Optional<UserModel> userOptional = userRepository.findByLogin(login);
         if (userOptional.isPresent()) {
             UserModel user = userOptional.get();
-            String hashedPassword = user.getPassword(); // Получите хешированный пароль из базы данных
-            boolean passwordMatch = passwordEncoder.matches(password, hashedPassword); // Сравните хешированные пароли
-
+            String hashedPassword = user.getPassword(); // get hash password
+            boolean passwordMatch = passwordEncoder.matches(password, hashedPassword);
             if (passwordMatch) {
-                return user; // Верните UserModel, представляющий аутентифицированного пользователя
+                return user; // return UserModel
             }
         }
-        return null; // Пользователь не найден или пароль не совпадает
+        return null; // return null if user is not available
     }
 
 

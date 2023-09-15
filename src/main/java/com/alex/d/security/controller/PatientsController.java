@@ -1,5 +1,8 @@
 package com.alex.d.security.controller;
 
+import com.alex.d.security.models.UserModel;
+import com.alex.d.security.service.PatientService;
+import com.alex.d.security.service.UserService;
 import org.springframework.ui.Model;
 import com.alex.d.security.models.PatientsModel;
 import com.alex.d.security.repositories.PatientsRepository;
@@ -7,41 +10,22 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
-/*
-@Controller
-public class PatientsController {
 
-    private PatientsRepository patientsRepository;
-
-    @Autowired
-    public PatientsController(PatientsRepository patientsRepository) {
-        this.patientsRepository = patientsRepository;
-    }
-
-    @GetMapping("/patients")
-    @ModelAttribute
-    public String listPatients(Model model) {
-        List<PatientsModel> patientsModels = patientsRepository.findAll();
-        model.addAttribute("patients", patientsModels);
-        return "patientList"; // Название представления, где будет отображаться список пациентов
-    }
-}*/
 
 @Controller
 public class PatientsController {
-
-    private PatientsRepository patientsRepository;
+    private final PatientService patientService;
+    private final PatientsRepository patientsRepository;
 
     @Autowired
-    public PatientsController(PatientsRepository patientsRepository) {
+    public PatientsController(PatientsRepository patientsRepository, PatientService patientService) {
         this.patientsRepository = patientsRepository;
+
+        this.patientService = patientService;
     }
 
     @GetMapping("/addPatient")
@@ -64,13 +48,8 @@ public class PatientsController {
         return "redirect:/patients";
     }
 
-    @ModelAttribute
-    public void addAttributes(Model model) {
-//        model.addAttribute("msg", "Welcome to the Patients System!");
-    }
-
     @GetMapping("/patients")
-    public String listPatients(Model model) {
+    public String listPatients(Model model, UserModel userModel) {
         List<PatientsModel> patients = patientsRepository.findAll();
         model.addAttribute("patients", patients);
         return "patients/patients";
@@ -87,52 +66,24 @@ public class PatientsController {
         return "redirect:/patients";
     }
 
+    @GetMapping("/patient/{id}")
+    public String getPatientById(@PathVariable Long id, Model model) {
+        // Retrieve the patient by ID from your service
+        PatientsModel  patient = patientService.getPatientById(id);
+        // Add the patient object to the model for rendering in the template
+        model.addAttribute("patient", patient);
+        return "patients/patientView"; // This is the name of your Thymeleaf template
+    }
+
+    @PostMapping("/update-diagnosis/{id}")
+    public String updateDiagnosis(@PathVariable Long id, Model model, @RequestParam("diagnosis") String newDiagnosis) {
+        // Logic to update the patient's diagnosis in the database
+        // Use the id and newDiagnosis values to perform the update
+        PatientsModel patientsModel = patientService.getPatientById(id);
+        patientsModel.setDiagnosis(newDiagnosis);
+        patientService.savePatient(patientsModel);
+        // Redirect to the patient details page
+        return "redirect:/patient/" + id;
+    }
 }
-/*@Controller
-public class PatientsController {
 
-    private final PatientsRepository patientsRepository;
-
-    @Autowired
-    public PatientsController(PatientsRepository patientsRepository) {
-        this.patientsRepository = patientsRepository;
-    }
-
-    @GetMapping("/addPatient")
-    public String showAddPatientForm(Model model) {
-        model.addAttribute("patient", new PatientsModel());
-        return "patients/addPatientForm";
-    }
-
-    @PostMapping("/addPatient")
-    public String submitAddPatientForm(
-            @ModelAttribute("patient") PatientsModel patient) {
-        patientsRepository.save(patient);
-        return "redirect:/patients";
-    }
-
-    @GetMapping("/patients")
-    public String listPatients(Model model) {
-        List<PatientsModel> patients = patientsRepository.findAll();
-        model.addAttribute("patients", patients);
-        return "patients/patients";
-    }
-
-}*/
-
-
-
-/*@Controller
-public class PatientsController {
-
-    @Autowired
-    private PatientsRepository patientsRepository;
-
-    @GetMapping("/patients")
-    public String listPatients(Model model) {
-        List<PatientsModel> patients = patientsRepository.findAll();
-        model.addAttribute("patients", patients);
-        return "patients/patients"; // The name of your Thymeleaf HTML template
-//        return "dashboard/user_dash";
-    }
-}*/

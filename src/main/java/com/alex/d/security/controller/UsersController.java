@@ -18,13 +18,15 @@ import java.util.List;
 public class UsersController {
 
     private final UserService userService;
-    private final BCryptPasswordEncoder passwordEncoder; // Инициализируйте BCryptPasswordEncoder
+
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public UsersController(UserService userService, BCryptPasswordEncoder passwordEncoder) {
         this.userService = userService;
-        this.passwordEncoder = passwordEncoder; // Инициализируйте passwordEncoder
+        this.passwordEncoder = passwordEncoder;
     }
+
 
     @GetMapping("/register")
     public String getRegisterPage(Model model) {
@@ -41,8 +43,8 @@ public class UsersController {
     @PostMapping("/register")
     public String register(@ModelAttribute UserModel userModel) {
         System.out.println("Register request " + userModel);
-       /* String encodedPassword = passwordEncoder.encode(userModel.getPassword());
-        userModel.setPassword(encodedPassword);*/
+        String encodedPassword = passwordEncoder.encode(userModel.getPassword());
+        userModel.setPassword(encodedPassword);
         UserModel registeredUser = userService.registerUser(userModel.getName(), userModel.getLogin(), userModel.getPassword());
         return registeredUser == null ? "err/registration_error" : "redirect:/login";
     }
@@ -55,8 +57,6 @@ public class UsersController {
             model.addAttribute("userLogin", authenticate.getLogin());
 //            return "dashboard/user_dash";
             return "redirect:/patients";
-
-
         } else {
             return "err/error";
         }

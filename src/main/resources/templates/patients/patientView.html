@@ -1,16 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8">
-  <title>Patient Information</title>
+  <title>Patient Details</title>
 </head>
 <body>
-<h1>Patient Information</h1>
-<p>ID: <span th:text="${id}"></span></p>
+<h1>Patient Details</h1>
+<p>ID: <span th:text="${patient.id}"></span></p>
 <p>First Name: <span th:text="${patient.first_name}"></span></p>
 <p>Last Name: <span th:text="${patient.last_name}"></span></p>
 <p>Day of Birth: <span th:text="${patient.dob}"></span></p>
-<p>Diagnosis: <span th:text="${patient.diagnosis}"></span></p>
-<p th:text="${msg}"></p>
+
+<!-- Editable Diagnosis Field -->
+<form th:action="@{'/update-diagnosis/' + ${patient.id}}" method="post">
+  <p>Diagnosis: <input type="text" th:value="${patient.diagnosis}" name="diagnosis"></p>
+  <button type="submit">Update Diagnosis</button>
+</form>
+
+<!-- JavaScript to change the form method to PUT -->
+<script>
+  document.getElementById('updateDiagnosisForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', this.action, true);
+    xhr.send(formData);
+  });
+</script>
+
+<a href="/patients">Back to Patient List</a>
+
 </body>
 </html>
