@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -6,19 +7,19 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<!--<div class="form">
-    <form method="post" action="/register" th:object="${registerRequest}">-->
+&lt;!&ndash;<div class="form">
+    <form method="post" action="/register" th:object="${registerRequest}">&ndash;&gt;
 <body class="align">
 <div class="grid">
 
-    <!--        <form action="https://httpbin.org/post" method="POST" class="form login">-->
+    &lt;!&ndash;        <form action="https://httpbin.org/post" method="POST" class="form login">&ndash;&gt;
     <form method="post" action="/register" th:object="${registerRequest}">
         <div class="form__field">
 
             <div class="form__field">
                 <label for="name">
                     <svg class="icon">
-                        <!--                        <use xlink:href="#icon-user"></use>-->
+                        &lt;!&ndash;                        <use xlink:href="#icon-user"></use>&ndash;&gt;
                     </svg>
                     <span class="hidden">Name</span></label>
                 <input autocomplete="name" id="name" type="text" name="name" class="form__input" placeholder="Name"
@@ -27,7 +28,7 @@
 
             <label for="login">
                 <svg class="icon">
-                    <!--                    <use xlink:href="#icon-user"></use>-->
+                    &lt;!&ndash;                    <use xlink:href="#icon-user"></use>&ndash;&gt;
                 </svg>
                 <span class="hidden">Login</span></label>
             <input autocomplete="login" id="login" type="text" name="login" class="form__input"
@@ -37,7 +38,7 @@
         <div class="form__field">
             <label for="password">
                 <svg class="icon">
-                    <!--                    <use xlink:href="#icon-lock"></use>-->
+                    &lt;!&ndash;                    <use xlink:href="#icon-lock"></use>&ndash;&gt;
                 </svg>
                 <span class="hidden">Password</span></label>
             <input id="password" type="password" name="password" class="form__input" placeholder="Password"
@@ -73,4 +74,92 @@
 
 </body>
 
+</html>-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<body>
+<div class="container">
+    <h1>Registration Form</h1>
+    <form method="post" action="/register" th:object="${registerRequest}">
+      <!--  <div class="form__field">-->
+            <label for="name"></label>
+            <input autocomplete="name" id="name" type="text" name="name" class="form__input" placeholder="Name" required>
+       <!-- </div>-->
+<!--        <div class="form__field">-->
+            <label for="login"></label>
+            <input autocomplete="login" id="login" type="text" name="login" class="form__input" placeholder="Login" required>
+<!--        </div>-->
+<!--        <div class="form__field">-->
+            <label for="password"></label>
+            <input id="password" type="password" name="password" class="form__input" placeholder="Password" required>
+<!--        </div>-->
+        <button type="submit">Sign in</button>
+    </form>
+</div>
+</body>
 </html>
+
+<style>body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    font-size: 24px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
