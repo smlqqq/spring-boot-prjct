@@ -3,46 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Добро пожаловать</title>
+    <title>Welcome</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="container">
-    <h1>Добро пожаловать на наш сайт!</h1>
-    <p>Пожалуйста, выберите действие:</p>
-    <a href="/login">Войти</a>
-    <a href="/register">Зарегистрироваться</a>
+    <h1>Welcome</h1>
+    <p>Please choose login or registration:</p>
+    <a class="button" href="/login">Login</a>
+    <a class="button" href="/register">Sign in</a>
 </div>
 <script src="script.js"></script>
 </body>
 </html>
 
-<style>body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
 
-.container {
-    text-align: center;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
 
-a {
-    display: block;
-    margin: 10px 0;
-    font-size: 18px;
-    text-decoration: none;
-    color: #007bff;
-}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
 
-a:hover {
-    text-decoration: underline;
-}</style>
+    .container {
+        text-align: center;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+
+    .button {
+        display: block;
+        margin: 10px 0;
+        padding: 10px 20px;
+        font-size: 18px;
+        text-decoration: none;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #0056b3;
+    }
+</style>
