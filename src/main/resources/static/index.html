@@ -2,67 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome</title>
-    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="container">
-    <h1>Welcome</h1>
-    <p>Please choose login or registration:</p>
-    <a class="button" href="/login">Login</a>
-    <a class="button" href="/register">Sign in</a>
-</div>
-<script src="script.js"></script>
-</body>
-</html>
-
-
 
 <style>
+    * {
+        box-sizing: border-box;
+    }
+
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f0f0f0;
+        font-family: Arial;
+        background-color: #3498DB;
+        padding: 50px;
         margin: 0;
-        padding: 0;
         display: flex;
         justify-content: center;
         align-items: center;
         height: 100vh;
     }
 
-    .container {
-        text-align: center;
-        background-color: #fff;
+    .welcome {
+        background-color: #FFF;
         padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+        text-align: center;
     }
 
-    h1 {
-        font-size: 24px;
+    .app-title {
+        color: #777;
+    }
+
+    .buttons {
+        margin-top: 20px;
+    }
+
+    .btn {
+        border: 2px solid transparent;
+        background: #3498DB;
+        color: #ffffff;
+        font-size: 16px;
+        line-height: 25px;
+        padding: 10px 20px;
+        text-decoration: none;
+        text-shadow: none;
+        border-radius: 3px;
+        box-shadow: none;
+        transition: 0.25s;
+        display: block;
+        width: 250px;
+        margin: 0 auto;
         margin-bottom: 10px;
     }
 
-    p {
-        font-size: 18px;
-    }
-
-    .button {
-        display: block;
-        margin: 10px 0;
-        padding: 10px 20px;
-        font-size: 18px;
-        text-decoration: none;
-        background-color: #007bff;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
-
-    .button:hover {
-        background-color: #0056b3;
+    .btn:hover {
+        background-color: #2980B9;
     }
 </style>
+
+<div class="welcome">
+    <div class="app-title">
+        <h1>Welcome</h1>
+    </div>
+    <div class="buttons">
+        <a class="btn" href="/login">Login</a>
+        <a class="btn" href="/register">Sign in</a>
+    </div>
+</div>
+</body>
+</html>
