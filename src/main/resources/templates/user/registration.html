@@ -1,31 +1,4 @@
-<!--<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration Form</title>
-</head>
-<body>
-<div class="container">
-    <h1>Registration Form</h1>
-    <form method="post" action="/register" th:object="${registerRequest}">
-
-            <label for="name"></label>
-            <input autocomplete="name" id="name" type="text" name="name" class="form__input" placeholder="Name" required>
-
-            <label for="login"></label>
-            <input autocomplete="login" id="login" type="text" name="login" class="form__input" placeholder="Login" required>
-
-
-            <label for="password"></label>
-            <input id="password" type="password" name="password" class="form__input" placeholder="Password" required>
-
-        <button type="submit">Sign in</button>
-    </form>
-</div>
-</body>
-</html>-->
-
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -145,7 +118,6 @@ input:focus {
 }</style>
 
 
-<!--
 <style>body {
     font-family: Arial, sans-serif;
     background-color: #f0f0f0;
@@ -202,4 +174,112 @@ button {
 button:hover {
     background-color: #0056b3;
 }
-</style>-->
+</style>
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="terminal">
+    <pre class="register">
+
+
+██████╗░███████╗░██████╗░██╗░██████╗████████╗██████╗░░█████╗░████████╗██╗░█████╗░███╗░░██╗
+██╔══██╗██╔════╝██╔════╝░██║██╔════╝╚══██╔══╝██╔══██╗██╔══██╗╚══██╔══╝██║██╔══██╗████╗░██║
+██████╔╝█████╗░░██║░░██╗░██║╚█████╗░░░░██║░░░██████╔╝███████║░░░██║░░░██║██║░░██║██╔██╗██║
+██╔══██╗██╔══╝░░██║░░╚██╗██║░╚═══██╗░░░██║░░░██╔══██╗██╔══██║░░░██║░░░██║██║░░██║██║╚████║
+██║░░██║███████╗╚██████╔╝██║██████╔╝░░░██║░░░██║░░██║██║░░██║░░░██║░░░██║╚█████╔╝██║░╚███║
+╚═╝░░╚═╝╚══════╝░╚═════╝░╚═╝╚═════╝░░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░╚════╝░╚═╝░░╚══╝
+
+    </pre>
+    <div class="form">
+        <form method="post" action="/register" th:object="${registerRequest}">
+            <input type="text" class="login-field" name="name" placeholder="Name" id="name" required>
+            <input type="text" class="login-field" name="login" placeholder="Login" id="login" required>
+            <input type="password" class="login-field" name="password" placeholder="Password" id="password" required>
+            <button type="submit" class="button">Register</button>
+        </form>
+    </div>
+    <p class="login-link">Already have an account? <a href="/login">Log in</a></p>
+</div>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #000;
+        color: #0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .terminal {
+        background-color: #000;
+        border: 2px solid #0f0;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .register {
+        color: #0f0;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #0f0;
+        border-radius: 3px;
+        background-color: #000;
+        color: #0f0;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0f0;
+        color: #000;
+        text-decoration: none;
+        border: 2px solid #0f0;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 10px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #000;
+        color: #0f0;
+    }
+
+    .login-link {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .login-link a {
+        color: #0f0;
+        text-decoration: none;
+    }
+
+</style>

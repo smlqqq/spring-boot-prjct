@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -9,31 +10,31 @@
 <table>
   <thead>
   <tr>
-<!--    <th>ID</th>-->
+&lt;!&ndash;    <th>ID</th>&ndash;&gt;
     <th>First Name</th>
     <th>Last Name</th>
-<!--    <th>DOB</th>-->
-<!--    <th>Diagnosis</th>-->
-    <th>Actions</th> <!-- Add a new column for actions -->
+&lt;!&ndash;    <th>DOB</th>&ndash;&gt;
+&lt;!&ndash;    <th>Diagnosis</th>&ndash;&gt;
+    <th>Actions</th> &lt;!&ndash; Add a new column for actions &ndash;&gt;
   </tr>
   </thead>
   <tbody>
 
   <tr th:each="patient : ${patients}">
-<!--    <td th:text="${patient.id}"></td>-->
+&lt;!&ndash;    <td th:text="${patient.id}"></td>&ndash;&gt;
     <td th:text="${patient.first_name}"></td>
     <td th:text="${patient.last_name}"></td>
-<!--    <td th:text="${patient.dob}"></td>-->
-<!--    <td th:text="${patient.diagnosis}"></td>-->
+&lt;!&ndash;    <td th:text="${patient.dob}"></td>&ndash;&gt;
+&lt;!&ndash;    <td th:text="${patient.diagnosis}"></td>&ndash;&gt;
     <td>
-<!--      <a th:href="@{'/patient/' + ${patient.id}}" >Get details</a>-->
-<!--      <a th:href="@{'/delete-patient/' + ${patient.id}}" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>-->
+&lt;!&ndash;      <a th:href="@{'/patient/' + ${patient.id}}" >Get details</a>&ndash;&gt;
+&lt;!&ndash;      <a th:href="@{'/delete-patient/' + ${patient.id}}" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>&ndash;&gt;
       <button th:attr="patient=${patient.id}" class="get-view-button">Get info</button>
       <button th:attr="data-patient-id=${patient.id}" class="delete-button">Delete</button>
     </td>
   </tr>
 
-  <!-- JavaScript code for handling the delete confirmation -->
+  &lt;!&ndash; JavaScript code for handling the delete confirmation &ndash;&gt;
   <script>
     const deleteButtons = document.querySelectorAll('.delete-button');
 
@@ -59,7 +60,7 @@
   </script>
 
 
-<!--  /* Style the table */-->
+&lt;!&ndash;  /* Style the table */&ndash;&gt;
   <style>
 
     table {
@@ -107,6 +108,58 @@
 </table>
 <a href="/addPatient">Add</a>
 <a href="/logout">Log out</a>
+
+</body>
+</html>
+-->
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient List</title>
+</head>
+<body style="font-family: 'Courier New', Courier, monospace; background-color: #000; color: #0f0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+
+<div class="terminal" style="background-color: #000; border: 2px solid #0f0; border-radius: 5px; padding: 20px; text-align: center;">
+    <pre class="title" style="color: #0f0; font-size: 24px; margin-bottom: 20px;">
+
+██████╗░░█████╗░████████╗░█████╗░
+██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗
+██║░░██║███████║░░░██║░░░███████║
+██║░░██║██╔══██║░░░██║░░░██╔══██║
+██████╔╝██║░░██║░░░██║░░░██║░░██║
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝
+    </pre>
+    <h1 style="color: #0f0;">Welcome <span th:text="${userName}" style="color: #0f0;"></span></h1>
+    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+        <thead>
+        <tr>
+            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #00ff00; background-color: #000000;">First Name</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #00ff00; background-color: #000000;">Last Name</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #00ff00; background-color: #000000;">Diagnosis</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #00ff00; background-color: #000000;">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+
+        <tr th:each="patient : ${patients}">
+            <td th:text="${patient.first_name}"></td>
+            <td th:text="${patient.last_name}"></td>
+            <td th:text="${patient.diagnosis}"></td>
+            <td>
+               <a th:href="@{'/patient/' + ${patient.id}}" style="display: inline-block; padding: 10px 20px; background-color: #0f0; color: #000; text-decoration: none; border: 2px solid #0f0; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Get details</a>
+               <a th:href="@{'/delete-patient/' + ${patient.id}}" onclick="return confirm('Are you sure you want to delete this patient?');" style="display: inline-block; padding: 10px 20px; background-color: #0f0; color: #000; text-decoration: none; border: 2px solid #0f0; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;"> Delete</a>
+            </td>
+        </tr>
+
+        </tbody>
+    </table>
+    <a href="/addPatient" style="display: inline-block; padding: 10px 20px; background-color: #0f0; color: #000; text-decoration: none; border: 2px solid #0f0; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Add</a>
+    <a href="/logout" style="display: inline-block; padding: 10px 20px; background-color: #0f0; color: #000; text-decoration: none; border: 2px solid #0f0; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Log out</a>
+</div>
 
 </body>
 </html>

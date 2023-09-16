@@ -1,3 +1,4 @@
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,10 +6,152 @@
     <title>Error</title>
 </head>
 <body>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial;
+        background-color: #3498DB;
+        padding: 50px;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    h1 {
+        background-color: #FFF;
+        padding: 20px;
+        border-radius: 5px;
+        text-align: center;
+        color: #777;
+    }
+
+    .buttons {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+    .btn {
+        border: 2px solid transparent;
+        background: #3498DB;
+        color: #ffffff;
+        font-size: 16px;
+        line-height: 25px;
+        padding: 10px 20px;
+        text-decoration: none;
+        text-shadow: none;
+        border-radius: 3px;
+        box-shadow: none;
+        transition: 0.25s;
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .btn:hover {
+        background-color: #2980B9;
+    }
+</style>
+
 <h1>
-  Incorrect data.
+    Incorrect data.
 </h1>
-<a href="/register">navigate to registration</a>
-<a href="/login">navigate to login</a>
+<div class="buttons">
+    <a class="btn" href="/login">Login</a>
+    <a class="btn" href="/register">Sign in</a>
+</div>
 </body>
 </html>
+-->
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="terminal">
+    <pre class="error">
+
+
+██╗███╗░░██╗░█████╗░░█████╗░██████╗░██████╗░███████╗░█████╗░████████╗  ██████╗░░█████╗░████████╗░█████╗░░░░
+██║████╗░██║██╔══██╗██╔══██╗██╔══██╗██╔══██╗██╔════╝██╔══██╗╚══██╔══╝  ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗░░░
+██║██╔██╗██║██║░░╚═╝██║░░██║██████╔╝██████╔╝█████╗░░██║░░╚═╝░░░██║░░░  ██║░░██║███████║░░░██║░░░███████║░░░
+██║██║╚████║██║░░██╗██║░░██║██╔══██╗██╔══██╗██╔══╝░░██║░░██╗░░░██║░░░  ██║░░██║██╔══██║░░░██║░░░██╔══██║░░░
+██║██║░╚███║╚█████╔╝╚█████╔╝██║░░██║██║░░██║███████╗╚█████╔╝░░░██║░░░  ██████╔╝██║░░██║░░░██║░░░██║░░██║██╗
+╚═╝╚═╝░░╚══╝░╚════╝░░╚════╝░╚═╝░░╚═╝╚═╝░░╚═╝╚══════╝░╚════╝░░░░╚═╝░░░  ╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚═╝
+
+    </pre>
+    <p class="error-message">Incorrect data.</p>
+    <div class="buttons">
+        <a class="button" href="/login">Login</a>
+        <a class="button" href="/register">Sign in</a>
+    </div>
+</div>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #000;
+        color: #0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .terminal {
+        background-color: #000;
+        border: 2px solid #0f0;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .error {
+        color: #0f0;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .error-message {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0f0;
+        color: #000;
+        text-decoration: none;
+        border: 2px solid #0f0;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 10px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #000;
+        color: #0f0;
+    }
+
+</style>

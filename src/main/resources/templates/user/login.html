@@ -1,5 +1,6 @@
 <!--
 &lt;!&ndash;
+&lt;!&ndash;
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
@@ -100,11 +101,11 @@
 </html>
 
 
--->
+&ndash;&gt;
 
 
 
-<!--<!DOCTYPE html>
+&lt;!&ndash;<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -128,11 +129,11 @@
     </form>
 </div>&lt;!&ndash;end log form &ndash;&gt;
 </body>
-</html>-->
+</html>&ndash;&gt;
 
 
 
-<!--
+&lt;!&ndash;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -164,7 +165,7 @@
     </div>
 </div>
 </body>
-</html>-->
+</html>&ndash;&gt;
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -265,18 +266,18 @@ input:focus {
             <form method="post" action="/login" th:object="${loginRequest}">
                 <div class="control-group">
                     <input type="text" class="login-field" name="login" placeholder="username" id="login" required>
-                    <!-- Replace the value attribute with the name attribute and add the required attribute -->
+                    &lt;!&ndash; Replace the value attribute with the name attribute and add the required attribute &ndash;&gt;
                     <label class="login-field-icon fui-user" for="login"></label>
                 </div>
 
                 <div class="control-group">
                     <input type="password" class="login-field" name="password" placeholder="password" id="password" required>
-                    <!-- Replace the value attribute with the name attribute and add the required attribute -->
+                    &lt;!&ndash; Replace the value attribute with the name attribute and add the required attribute &ndash;&gt;
                     <label class="login-field-icon fui-lock" for="password"></label>
                 </div>
 
                 <button type="submit" class="btn btn-primary btn-large btn-block">Login</button>
-                <!-- Use a button element for the login button -->
+                &lt;!&ndash; Use a button element for the login button &ndash;&gt;
                 <a class="login-link" href="/">Lost your password?</a>
             </form>
         </div>
@@ -284,3 +285,110 @@ input:focus {
 </div>
 </body>
 </html>
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="terminal">
+    <pre class="login">
+
+
+██╗░░░░░░█████╗░░██████╗░██╗███╗░░██╗
+██║░░░░░██╔══██╗██╔════╝░██║████╗░██║
+██║░░░░░██║░░██║██║░░██╗░██║██╔██╗██║
+██║░░░░░██║░░██║██║░░╚██╗██║██║╚████║
+███████╗╚█████╔╝╚██████╔╝██║██║░╚███║
+╚══════╝░╚════╝░░╚═════╝░╚═╝╚═╝░░╚══╝
+
+    </pre>
+    <div class="form">
+        <form method="post" action="/login" th:object="${loginRequest}">
+            <input type="text" class="login-field" name="login" placeholder="username" id="login" required>
+            <input type="password" class="login-field" name="password" placeholder="password" id="password" required>
+            <button type="submit" class="button">Login</button>
+        </form>
+    </div>
+    <p class="signup-link">Don't have an account? <a href="/register">Sign up</a></p>
+</div>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #000;
+        color: #0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .terminal {
+        background-color: #000;
+        border: 2px solid #0f0;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .login {
+        color: #0f0;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    input {
+        margin: 10px 0;
+        padding: 10px;
+        border: 1px solid #0f0;
+        border-radius: 3px;
+        background-color: #000;
+        color: #0f0;
+        font-family: 'Courier New', Courier, monospace;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #0f0;
+        color: #000;
+        text-decoration: none;
+        border: 2px solid #0f0;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 10px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #000;
+        color: #0f0;
+    }
+
+    .signup-link {
+        font-size: 14px;
+        margin-top: 10px;
+    }
+
+    .signup-link a {
+        color: #0f0;
+        text-decoration: none;
+    }
+
+</style>
