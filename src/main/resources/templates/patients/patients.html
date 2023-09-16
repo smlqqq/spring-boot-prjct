@@ -121,10 +121,10 @@
     <meta charset="UTF-8">
     <title>Patient List</title>
 </head>
-<body style="font-family: 'Courier New', Courier, monospace; background-color: #000; color: #0f0; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+<body style="font-family: 'Courier New', Courier, monospace; background-color: #1d1f21; color: #c5c8c6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
 
-<div class="terminal" style="background-color: #000; border: 2px solid #0f0; border-radius: 5px; padding: 20px; text-align: center;">
-    <pre class="title" style="color: #0f0; font-size: 24px; margin-bottom: 20px;">
+<div class="terminal" style="background-color: #1d1f21; border: 2px solid #c5c8c6; border-radius: 5px; padding: 20px; text-align: center;">
+    <pre class="title" style="color: #c5c8c6; font-size: 24px; margin-bottom: 20px;">
 
 ██████╗░░█████╗░████████╗░█████╗░
 ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗
@@ -133,14 +133,14 @@
 ██████╔╝██║░░██║░░░██║░░░██║░░██║
 ╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝
     </pre>
-    <h1 style="color: #0f0;">Welcome <span th:text="${userName}" style="color: #0f0;"></span></h1>
+    <h1 style="color: #c5c8c6;">Welcome <span th:text="${userName}" style="color: #c5c8c6;"></span></h1>
     <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
         <thead>
         <tr>
-            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #00ff00; background-color: #000000;">First Name</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #00ff00; background-color: #000000;">Last Name</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #00ff00; background-color: #000000;">Diagnosis</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #00ff00; background-color: #000000;">Actions</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #c5c8c6; background-color: #1d1f21;">First Name</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #c5c8c6; background-color: #1d1f21;">Last Name</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #c5c8c6; background-color: #1d1f21;">Diagnosis</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #1d1f21;">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -150,15 +150,15 @@
             <td th:text="${patient.last_name}"></td>
             <td th:text="${patient.diagnosis}"></td>
             <td>
-               <a th:href="@{'/patient/' + ${patient.id}}" style="display: inline-block; padding: 10px 20px; background-color: #0f0; color: #000; text-decoration: none; border: 2px solid #0f0; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Get details</a>
-               <a th:href="@{'/delete-patient/' + ${patient.id}}" onclick="return confirm('Are you sure you want to delete this patient?');" style="display: inline-block; padding: 10px 20px; background-color: #0f0; color: #000; text-decoration: none; border: 2px solid #0f0; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;"> Delete</a>
+               <a th:href="@{'/patient/' + ${patient.id}}" style="display: inline-block; padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Get details</a>
+               <a th:href="@{'/delete-patient/' + ${patient.id}}" onclick="return confirm('Are you sure you want to delete this patient?');" style="display: inline-block; padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;"> Delete</a>
             </td>
         </tr>
 
         </tbody>
     </table>
-    <a href="/addPatient" style="display: inline-block; padding: 10px 20px; background-color: #0f0; color: #000; text-decoration: none; border: 2px solid #0f0; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Add</a>
-    <a href="/logout" style="display: inline-block; padding: 10px 20px; background-color: #0f0; color: #000; text-decoration: none; border: 2px solid #0f0; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Log out</a>
+    <a href="/addPatient" style="display: inline-block; padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Add</a>
+    <a href="/logout" style="display: inline-block; padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Log out</a>
 </div>
 
 </body>
