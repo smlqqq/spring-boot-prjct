@@ -17,12 +17,11 @@ import java.util.Optional;
 
 @Controller
 public class PatientsController {
+    //MVC
+    //REST
     private final PatientService patientService;
     private final PatientsRepository patientsRepository;
-
-
-
-    @Autowired
+        @Autowired
     public PatientsController(PatientsRepository patientsRepository, PatientService patientService) {
         this.patientsRepository = patientsRepository;
         this.patientService = patientService;

@@ -4,31 +4,28 @@
   <meta charset="UTF-8">
   <title>Patient Details</title>
 </head>
-<body style="background-color: #1d1f21; font-family: 'Courier New', Courier, monospace; color: #c5c8c6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
-
-<div class="terminal" style="background-color: #1d1f21; border: 2px solid #c5c8c6; border-radius: 5px; padding: 20px; text-align: center;">
-    <pre class="title" style="color: #c5c8c6; font-size: 24px; margin-bottom: 20px;">
-
+<body>
+<div class="terminal">
+        <pre class="title">
 ██████╗░███████╗████████╗░█████╗░██╗██╗░░░░░░██████╗
 ██╔══██╗██╔════╝╚══██╔══╝██╔══██╗██║██║░░░░░██╔════╝
 ██║░░██║█████╗░░░░░██║░░░███████║██║██║░░░░░╚█████╗░
 ██║░░██║██╔══╝░░░░░██║░░░██╔══██║██║██║░░░░░░╚═══██╗
 ██████╔╝███████╗░░░██║░░░██║░░██║██║███████╗██████╔╝
 ╚═════╝░╚══════╝░░░╚═╝░░░╚═╝░░╚═╝╚═╝╚══════╝╚═════╝░
-    </pre>
-  <h1 style="color: #c5c8c6;">Patient Details</h1>
-  <p>ID: <span th:text="${patient.id}" style="color: #c5c8c6;"></span></p>
-  <p>First Name: <span th:text="${patient.first_name}" style="color: #c5c8c6;"></span></p>
-  <p>Last Name: <span th:text="${patient.last_name}" style="color: #c5c8c6;"></span></p>
-  <p>Day of Birth: <span th:text="${patient.dob}" style="color: #c5c8c6;"></span></p>
+        </pre>
+  <h1>Patient Details</h1>
+  <p>ID: <span th:text="${patient.id}"></span></p>
+  <p>First Name: <span th:text="${patient.first_name}"></span></p>
+  <p>Last Name: <span th:text="${patient.last_name}"></span></p>
+  <p>Day of Birth: <span th:text="${patient.dob}"></span></p>
 
   <!-- Editable Diagnosis Field -->
   <form th:action="@{'/update-diagnosis/' + ${patient.id}}" method="post" id="updateDiagnosisForm" >
-    <p style="color: #c5c8c6;">Diagnosis: <input type="text" th:value="${patient.diagnosis}" name="diagnosis" style="background-color: #1d1f21; border: 2px solid #c5c8c6; color: #c5c8c6;"></p>
-    <button type="submit" onclick="confirm('Data successfully updated.')" style="padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Update Diagnosis</button>
+    <p>Diagnosis: <input type="text" th:value="${patient.diagnosis}" name="diagnosis"></p>
+    <button type="submit" onclick="confirm('Data successfully updated.');">Update Diagnosis</button>
   </form>
 
-  <!-- JavaScript to change the form method to PUT -->
   <script>
     document.getElementById('updateDiagnosisForm').addEventListener('submit', function(event) {
       event.preventDefault();
@@ -39,8 +36,94 @@
     });
   </script>
 
-  <a href="/patientsList" style="display: inline-block; padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Back to Patient List</a>
-
+  <a href="/patientsList" >Back to Patient List</a>
 </div>
 </body>
 </html>
+
+<style>
+  body {
+    background-color: #1d1f21;
+    font-family: 'Courier New', Courier, monospace;
+    color: #c5c8c6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .terminal {
+    background-color: #1d1f21;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+  }
+
+
+  .title {
+    color: #c5c8c6;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  form {
+    color: #c5c8c6;
+  }
+
+  form p {
+    color: #c5c8c6;
+  }
+
+  input[type="text"] {
+    background-color: #1d1f21;
+    border: 2px solid #c5c8c6;
+    color: #c5c8c6;
+    padding: 5px;
+    width: 150px;
+    height: 30px;
+    overflow: auto; /* Скрывать содержимое, которое не помещается */
+    white-space:normal  /* Запрет на перенос текста на новую строку */
+
+  }
+
+  button {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px 40px;
+    background-color: #c5c8c6;
+    color: #1d1f21;
+    text-decoration: none;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+  }
+
+  button:hover {
+    background-color: #1d1f21;
+    color: #c5c8c6;
+  }
+
+  a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c5c8c6;
+    color: #1d1f21;
+    text-decoration: none;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+  }
+
+  a:hover {
+    background-color: #1d1f21;
+    color: #c5c8c6;
+  }
+
+</style>

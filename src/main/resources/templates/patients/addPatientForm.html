@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Add Patient</title>
+
   <style>
     body {
       font-family: 'Courier New', Courier, monospace;
@@ -49,9 +50,9 @@
       font-family: 'Courier New', Courier, monospace;
     }
 
-    /* Увеличьте размер поля diagnosis */
+
     input[type="text#diagnosis"] {
-      width: 600px; /* Измените размер здесь на ваше усмотрение */
+      width: 600px;
       height: 200px;
     }
 
@@ -92,6 +93,27 @@
       background-color: #1d1f21;
       color: #c5c8c6;
     }
+
+    button {
+      font-family: 'Courier New', Courier, monospace;
+      padding: 10px 25px;
+      background-color: #c5c8c6;
+      color: #1d1f21;
+      text-decoration: none;
+      border: 2px solid #c5c8c6;
+      border-radius: 5px;
+      font-size: 16px;
+      margin: 10px;
+      transition: background-color 0.3s, color 0.3s;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #1d1f21;
+      color: #c5c8c6;
+    }
+
+
   </style>
 </head>
 <body>
@@ -118,9 +140,8 @@
     <label for="diagnosis">Diagnosis:</label>
     <input type="text" id="diagnosis" th:field="*{diagnosis}" required>
     <br>
-    <input type="submit" value="Submit">
+    <button type="submit" onclick="confirm('Data successfully added.');">Add</button>
   </form>
-<!--  <p th:text="${msg}">new data added</p>-->
   <a class="main" href="/patientsList">Back</a>
 </div>
 </body>

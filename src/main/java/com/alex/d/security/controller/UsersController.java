@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+
 @Controller
 public class UsersController {
-
+    //MVC
+    //REST
     private final UserService userService;
 
     private final BCryptPasswordEncoder passwordEncoder;
@@ -24,7 +26,6 @@ public class UsersController {
         this.userService = userService;
         this.passwordEncoder = passwordEncoder;
     }
-
 
     @GetMapping("/register")
     public String getRegisterPage(Model model) {

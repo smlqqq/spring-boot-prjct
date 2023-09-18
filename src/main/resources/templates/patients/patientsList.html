@@ -1,165 +1,113 @@
-<!--
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>Patient List</title>
-</head>
-<body>
-<h1>Welcome <span th:text="${userName}"></span></h1>
-<table>
-  <thead>
-  <tr>
-&lt;!&ndash;    <th>ID</th>&ndash;&gt;
-    <th>First Name</th>
-    <th>Last Name</th>
-&lt;!&ndash;    <th>DOB</th>&ndash;&gt;
-&lt;!&ndash;    <th>Diagnosis</th>&ndash;&gt;
-    <th>Actions</th> &lt;!&ndash; Add a new column for actions &ndash;&gt;
-  </tr>
-  </thead>
-  <tbody>
-
-  <tr th:each="patient : ${patients}">
-&lt;!&ndash;    <td th:text="${patient.id}"></td>&ndash;&gt;
-    <td th:text="${patient.first_name}"></td>
-    <td th:text="${patient.last_name}"></td>
-&lt;!&ndash;    <td th:text="${patient.dob}"></td>&ndash;&gt;
-&lt;!&ndash;    <td th:text="${patient.diagnosis}"></td>&ndash;&gt;
-    <td>
-&lt;!&ndash;      <a th:href="@{'/patient/' + ${patient.id}}" >Get details</a>&ndash;&gt;
-&lt;!&ndash;      <a th:href="@{'/delete-patient/' + ${patient.id}}" onclick="return confirm('Are you sure you want to delete this patient?');">Delete</a>&ndash;&gt;
-      <button th:attr="patient=${patient.id}" class="get-view-button">Get info</button>
-      <button th:attr="data-patient-id=${patient.id}" class="delete-button">Delete</button>
-    </td>
-  </tr>
-
-  &lt;!&ndash; JavaScript code for handling the delete confirmation &ndash;&gt;
-  <script>
-    const deleteButtons = document.querySelectorAll('.delete-button');
-
-    deleteButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const patientId = button.getAttribute('data-patient-id');
-        const confirmed = confirm('Are you sure you want to delete this patient?');
-
-        if (confirmed) {
-          window.location.href = '/delete-patient/' + patientId;
-        }
-      });
-    });
-
-    const getViewButton = document.querySelectorAll('.get-view-button');
-    getViewButton.forEach(button => {
-      button.addEventListener('click', () => {
-        const patientId = button.getAttribute('patient');
-        window.location.href = '/patient/' + patientId;
-      });
-    });
-
-  </script>
-
-
-&lt;!&ndash;  /* Style the table */&ndash;&gt;
-  <style>
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
-
-    /* Style table headers */
-    th, td {
-      padding: 10px;
-      text-align: left;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #f2f2f2;
-    }
-
-    /* Style the "Actions" column */
-    .actions {
-      display: flex;
-      gap: 10px;
-    }
-
-    /* Style the "Actions" column */
-    .actions {
-      display: flex;
-      gap: 10px;
-    }
-
-    .delete-link {
-      color: red;
-      cursor: pointer; /* Add a cursor pointer to indicate clickability */
-    }
-
-    .details-link {
-      color: blue;
-      cursor: pointer;
-    }
-  </style>
-
-
-  </tbody>
-</table>
-<a href="/addPatient">Add</a>
-<a href="/logout">Log out</a>
-
-</body>
-</html>
--->
-
-
-
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Patient List</title>
 </head>
-<body style="font-family: 'Courier New', Courier, monospace; background-color: #1d1f21; color: #c5c8c6; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
-
-<div class="terminal" style="background-color: #1d1f21; border: 2px solid #c5c8c6; border-radius: 5px; padding: 20px; text-align: center;">
-    <pre class="title" style="color: #c5c8c6; font-size: 24px; margin-bottom: 20px;">
-
+<body>
+<div class="terminal">
+        <pre class="title">
 ██████╗░░█████╗░████████╗░█████╗░
 ██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗
 ██║░░██║███████║░░░██║░░░███████║
 ██║░░██║██╔══██║░░░██║░░░██╔══██║
 ██████╔╝██║░░██║░░░██║░░░██║░░██║
 ╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝
-    </pre>
+        </pre>
     <h1>Welcome <span th:text="${session.userName}"></span></h1>
-    <table style="width: 100%; border-collapse: collapse; margin-bottom: 20px;">
+    <table>
         <thead>
         <tr>
-            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #c5c8c6; background-color: #1d1f21;">First Name</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #c5c8c6; background-color: #1d1f21;">Last Name</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #c5c8c6; background-color: #1d1f21;">Diagnosis</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 1px solid #ddd; background-color: #1d1f21;">Actions</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Diagnosis</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
-
         <tr th:each="patient : ${patientsList}">
             <td th:text="${patient.first_name}"></td>
             <td th:text="${patient.last_name}"></td>
             <td th:text="${patient.diagnosis}"></td>
             <td>
-               <a th:href="@{'/patient/' + ${patient.id}}" style="display: inline-block; padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Get details</a>
-               <a th:href="@{'/delete-patient/' + ${patient.id}}" onclick="return confirm('Are you sure you want to delete this patient?');" style="display: inline-block; padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;"> Delete</a>
+                <a th:href="@{'/patient/' + ${patient.id}}" class="button">Get details</a>
+                <a th:href="@{'/delete-patient/' + ${patient.id}}"
+                   onclick="return confirm('Are you sure you want to delete this patient?');" class="button">Delete</a>
             </td>
         </tr>
-
         </tbody>
     </table>
-    <a href="/addPatient" style="display: inline-block; padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Add</a>
-    <a href="/logout" style="display: inline-block; padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Log out</a>
+    <a href="/addPatient" class="button">Add</a>
+    <a href="/logout" class="button">Log out</a>
 </div>
-
 </body>
 </html>
+
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #1d1f21;
+        color: #c5c8c6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    .terminal {
+        background-color: #1d1f21;
+        border: 2px solid #c5c8c6;
+        border-radius: 5px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .title {
+        color: #c5c8c6;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    table th {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #c5c8c6;
+        background-color: #1d1f21;
+        color: #c5c8c6;
+    }
+
+    table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #c5c8c6;
+        background-color: #1d1f21;
+        color: #c5c8c6;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #c5c8c6;
+        color: #1d1f21;
+        text-decoration: none;
+        border: 2px solid #c5c8c6;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 10px;
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: #1d1f21;
+        color: #c5c8c6;
+    }
+
+</style>
