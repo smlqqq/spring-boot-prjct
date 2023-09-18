@@ -38,28 +38,6 @@ public class UsersController {
         return "user/login";
     }
 
-    @PostMapping("/register")
-    public String register(@ModelAttribute UserModel userModel) {
-        System.out.println("Register request " + userModel);
-        String encodedPassword = passwordEncoder.encode(userModel.getPassword());
-        userModel.setPassword(encodedPassword);
-        UserModel registeredUser = userService.registerUser(userModel.getName(), userModel.getLogin(), userModel.getPassword());
-        return registeredUser == null ? "err/registration_error" : "redirect:/login";
-    }
-
-   /* @PostMapping("/login")
-    public String login(@ModelAttribute UserModel userModel, Model model) {
-        System.out.println("Login request " + userModel);
-        UserModel authenticate = userService.authenthicate(userModel.getLogin(), userModel.getPassword());
-        if (authenticate != null) {
-            model.addAttribute("userLogin", authenticate.getLogin());
-//            return "dashboard/user_dash";
-            return "redirect:/patientsList";
-        } else {
-            return "err/error";
-        }
-    }*/
-
     @PostMapping("/login")
     public String login(@ModelAttribute UserModel userModel, HttpSession session) {
         System.out.println("Login request " + userModel);
@@ -71,5 +49,15 @@ public class UsersController {
             return "err/error";
         }
     }
+
+    @PostMapping("/register")
+    public String register(@ModelAttribute UserModel userModel) {
+        System.out.println("Register request " + userModel);
+        String encodedPassword = passwordEncoder.encode(userModel.getPassword());
+        userModel.setPassword(encodedPassword);
+        UserModel registeredUser = userService.registerUser(userModel.getName(), userModel.getLogin(), userModel.getPassword());
+        return registeredUser == null ? "err/registration_error" : "redirect:/login";
+    }
+
 
 }

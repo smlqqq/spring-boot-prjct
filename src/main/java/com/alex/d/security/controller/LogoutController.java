@@ -19,7 +19,8 @@ public class LogoutController {
         // .. perform logout
 //        this.logoutHandler.doLogout(request, response, authentication);
         this.logoutHandler.logout(request, response, authentication);
-        return "redirect:/login";
+//        return "redirect:/login";
+        return "user/logout";
     }
 
  /*   @GetMapping("/logout")
