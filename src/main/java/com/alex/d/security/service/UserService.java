@@ -36,7 +36,7 @@ public class UserService {
         }
     }
 
-    public UserModel authenthicate (String login, String password) {
+    public UserModel authenticate (String login, String password) {
         Optional<UserModel> userOptional = userRepository.findByLogin(login);
         if (userOptional.isPresent()) {
             UserModel user = userOptional.get();

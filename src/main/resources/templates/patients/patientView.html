@@ -23,9 +23,9 @@
   <p>Day of Birth: <span th:text="${patient.dob}" style="color: #c5c8c6;"></span></p>
 
   <!-- Editable Diagnosis Field -->
-  <form th:action="@{'/update-diagnosis/' + ${patient.id}}" method="post" id="updateDiagnosisForm">
+  <form th:action="@{'/update-diagnosis/' + ${patient.id}}" method="post" id="updateDiagnosisForm" >
     <p style="color: #c5c8c6;">Diagnosis: <input type="text" th:value="${patient.diagnosis}" name="diagnosis" style="background-color: #1d1f21; border: 2px solid #c5c8c6; color: #c5c8c6;"></p>
-    <button type="submit" style="padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Update Diagnosis</button>
+    <button type="submit" onclick="confirm('Data successfully updated.')" style="padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Update Diagnosis</button>
   </form>
 
   <!-- JavaScript to change the form method to PUT -->

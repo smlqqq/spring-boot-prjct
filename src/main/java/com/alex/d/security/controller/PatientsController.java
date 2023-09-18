@@ -1,5 +1,6 @@
 package com.alex.d.security.controller;
 
+
 import com.alex.d.security.service.PatientService;
 import org.springframework.data.domain.Sort;
 import org.springframework.ui.Model;
@@ -19,10 +20,11 @@ public class PatientsController {
     private final PatientService patientService;
     private final PatientsRepository patientsRepository;
 
+
+
     @Autowired
     public PatientsController(PatientsRepository patientsRepository, PatientService patientService) {
         this.patientsRepository = patientsRepository;
-
         this.patientService = patientService;
     }
 
