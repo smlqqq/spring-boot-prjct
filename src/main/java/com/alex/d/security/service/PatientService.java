@@ -5,7 +5,6 @@ import com.alex.d.security.repositories.PatientsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
 @Service
 public class PatientService {
     

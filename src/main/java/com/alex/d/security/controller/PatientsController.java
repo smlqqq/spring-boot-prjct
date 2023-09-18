@@ -1,6 +1,7 @@
 package com.alex.d.security.controller;
 
 import com.alex.d.security.service.PatientService;
+import org.springframework.data.domain.Sort;
 import org.springframework.ui.Model;
 import com.alex.d.security.models.PatientsModel;
 import com.alex.d.security.repositories.PatientsRepository;
@@ -40,27 +41,27 @@ public class PatientsController {
         }
         PatientsModel savedPatient = patientsRepository.save(patient);
         model.addAttribute("id", savedPatient.getId());
-
-//        return "patients/patientView";
-        return "redirect:/patients";
+        return "redirect:/patientsList";
     }
 
-    @GetMapping("/patients")
+    @GetMapping("/patientsList")
     public String listPatients(Model model) {
-        List<PatientsModel> patients = patientsRepository.findAll();
-        model.addAttribute("patients", patients);
-        return "patients/patients";
+//        List<PatientsModel> patients = patientsRepository.findAll();
+        List<PatientsModel> patients = patientsRepository.findAll(Sort.by(Sort.Direction.ASC,"id"));
+        model.addAttribute("patientsList", patients);
+        return "patients/patientsList";
     }
 
-    @GetMapping("/delete-patient/{patientId}")
-    public String deletePatient(@PathVariable Long patientId) {
+    @GetMapping("/delete-patient/{id}")
+    public String deletePatient(@PathVariable Long id) {
         // Check if the patient exists
-        Optional<PatientsModel> patientOptional = patientsRepository.findById(patientId);
+//        Optional<PatientsModel> patientOptional = patientsRepository.findById(id);
+        Optional<PatientsModel> patientOptional = patientsRepository.findByIdOrderByIdAsc(id);
         if (patientOptional.isPresent()) {
-            patientsRepository.deleteById(patientId);
+            patientsRepository.deleteById(id);
         }
         // Redirect back to the patient list
-        return "redirect:/patients";
+        return "redirect:/patientsList";
     }
 
     @GetMapping("/patient/{id}")

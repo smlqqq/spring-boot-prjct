@@ -2,7 +2,6 @@ package com.alex.d.security.models;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Repository;
-
 @Repository
 @Getter
 @Setter

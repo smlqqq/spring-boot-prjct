@@ -145,7 +145,7 @@
         </thead>
         <tbody>
 
-        <tr th:each="patient : ${patients}">
+        <tr th:each="patient : ${patientsList}">
             <td th:text="${patient.first_name}"></td>
             <td th:text="${patient.last_name}"></td>
             <td th:text="${patient.diagnosis}"></td>

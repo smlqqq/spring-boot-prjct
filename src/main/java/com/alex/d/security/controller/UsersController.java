@@ -53,7 +53,7 @@ public class UsersController {
         if (authenticate != null) {
             model.addAttribute("userLogin", authenticate.getLogin());
 //            return "dashboard/user_dash";
-            return "redirect:/patients";
+            return "redirect:/patientsList";
         } else {
             return "err/error";
         }

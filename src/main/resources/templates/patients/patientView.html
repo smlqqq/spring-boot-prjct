@@ -34,12 +34,12 @@
       event.preventDefault();
       const formData = new FormData(this);
       const xhr = new XMLHttpRequest();
-      xhr.open('PUT', this.action, true);
+      xhr.open('POST', this.action, true);
       xhr.send(formData);
     });
   </script>
 
-  <a href="/patients" style="display: inline-block; padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Back to Patient List</a>
+  <a href="/patientsList" style="display: inline-block; padding: 10px 20px; background-color: #c5c8c6; color: #1d1f21; text-decoration: none; border: 2px solid #c5c8c6; border-radius: 5px; font-size: 16px; margin: 10px; transition: background-color 0.3s, color 0.3s; cursor: pointer;">Back to Patient List</a>
 
 </div>
 </body>
