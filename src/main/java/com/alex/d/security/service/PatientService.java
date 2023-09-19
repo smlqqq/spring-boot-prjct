@@ -2,8 +2,15 @@ package com.alex.d.security.service;
 
 import com.alex.d.security.models.PatientsModel;
 import com.alex.d.security.repositories.PatientsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 @Service
 public class PatientService {
@@ -30,4 +37,43 @@ public class PatientService {
         System.out.println("Diagnosis updated: " + patientOptional);
 
     }
+
+
+   /* public List<PatientsModel> patientById (Long id, Pageable paging) {
+        Page<PatientsModel> page = id == null
+                ? patientsRepository.findAll(paging)
+                : patientsRepository.findById(id, paging);
+
+        return page.getContent();
+    }*/
+
+    public List<PatientsModel> getAllPatients(Pageable pageable) {
+        // Fetch all patients with pagination
+        Page<PatientsModel> patientsPage = patientsRepository.findAll(pageable);
+        return patientsPage.getContent();
+    }
+
+    public List<PatientsModel> findPatientsById(Long id, Pageable pageable) {
+        Page<PatientsModel> page = id == null
+                ? patientsRepository.findAll(pageable)
+                : patientsRepository.findById(id, pageable);
+
+        return page.getContent();
+    }
+
+    public List<PatientsModel> getAllPatients (Integer pageNo, Integer pageSize, String sortBy)
+    {
+        Pageable pageable = PageRequest.of(pageNo,pageSize,Sort.by(sortBy));
+        Page<PatientsModel> page = patientsRepository.findAll(pageable);
+
+        if(page.hasContent()) {
+            return page.getContent();
+        } else {
+            return new ArrayList<PatientsModel>();
+        }
+    }
+
+
+
+
 }

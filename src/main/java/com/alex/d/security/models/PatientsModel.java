@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "patients")
 public class PatientsModel {

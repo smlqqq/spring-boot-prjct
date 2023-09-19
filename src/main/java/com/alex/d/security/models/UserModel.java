@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@EqualsAndHashCode
+@ToString
 @Entity
 @Table(name = "users")
 public class UserModel {
@@ -24,6 +24,5 @@ public class UserModel {
 
     @Column(name = "password")
     String password;
-
 
 }
