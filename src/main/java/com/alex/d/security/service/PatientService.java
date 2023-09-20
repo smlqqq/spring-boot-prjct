@@ -21,7 +21,7 @@ public class PatientService {
         this.patientsRepository = patientsRepository;
     }
 
-    public PatientsModel getPatientById(Long id) {
+    public PatientsModel getDataById(Long id) {
         // Use the patientsRepository to retrieve the patient by ID
         Optional<PatientsModel> patientOptional = patientsRepository.findById(id);
         // Check if the patient was found
@@ -32,7 +32,7 @@ public class PatientService {
         }
     }
 
-    public void savePatient(PatientsModel patientsModel) {
+    public void saveData(PatientsModel patientsModel) {
         Optional<PatientsModel> patientOptional = Optional.of(patientsRepository.save(patientsModel));
         System.out.println("Diagnosis updated: " + patientOptional);
 

@@ -20,7 +20,7 @@ public class UserService {
     }
     public UserModel registerUser(String name, String login, String password) {
         if (name != null && !name.isEmpty() && login != null && !login.isEmpty() && password != null && !password.isEmpty()) {
-            if (userRepository.findFirstByLogin(login).isPresent()) {
+            if (userRepository.findByLogin(login).isPresent()) {
                 System.out.println("This login is in use");
                 return null;
             }

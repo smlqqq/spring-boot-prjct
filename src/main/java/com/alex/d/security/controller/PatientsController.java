@@ -76,7 +76,7 @@ public class PatientsController {
     @GetMapping("/patient/{id}")
     public String getPatientById(@PathVariable Long id, Model model) {
         // Retrieve the patient by ID from your service
-        PatientsModel patient = patientService.getPatientById(id);
+        PatientsModel patient = patientService.getDataById(id);
         // Add the patient object to the model for rendering in the template
         model.addAttribute("patient", patient);
         return "patients/patientView"; // This is the name of your Thymeleaf template
@@ -86,18 +86,18 @@ public class PatientsController {
     public String updateDiagnosis(@PathVariable Long id, @RequestParam("diagnosis") String newDiagnosis) {
         // Logic to update the patient's diagnosis in the database
         // Use the id and newDiagnosis values to perform the update
-        PatientsModel patientsModel = patientService.getPatientById(id);
+        PatientsModel patientsModel = patientService.getDataById(id);
         patientsModel.setDiagnosis(newDiagnosis);
-        patientService.savePatient(patientsModel);
+        patientService.saveData(patientsModel);
         // Redirect to the patient details page
         return "redirect:/patient/" + id;
     }
 
     /* Pagination output all data and sort by id */
     @GetMapping("/patientsList")
-    public String getAllPatients(
+    public String getAllData(
             @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "5") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy,
             Model model) {
 
