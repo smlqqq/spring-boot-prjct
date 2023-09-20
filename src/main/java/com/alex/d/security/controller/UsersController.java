@@ -45,7 +45,7 @@ public class UsersController {
         UserModel authenticate = userService.authenticate(userModel.getLogin(), userModel.getPassword());
         if (authenticate != null) {
             session.setAttribute("userName", authenticate.getName());
-            return "redirect:/patientsList";
+            return "redirect:/list";
         } else {
             return "err/error";
         }

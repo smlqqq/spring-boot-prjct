@@ -34,13 +34,13 @@ public class PatientsController {
         this.patientService = patientService;
     }
 
-    @GetMapping("/addPatient")
+    @GetMapping("/registration")
     public String showAddPatientForm(Model model) {
         model.addAttribute("patient", new PatientsModel());
-        return "patients/addPatientForm";
+        return "patients/registration";
     }
 
-    @PostMapping("/addPatient")
+    @PostMapping("/registration")
     public String submitAddPatientForm(
             @ModelAttribute("patient") PatientsModel patient,
             BindingResult result, ModelMap model) {
@@ -49,7 +49,7 @@ public class PatientsController {
         }
         PatientsModel savedPatient = patientsRepository.save(patient);
         model.addAttribute("id", savedPatient.getId());
-        return "redirect:/patientsList";
+        return "redirect:/list";
     }
 
    /* @GetMapping("/patientsList")
@@ -70,7 +70,7 @@ public class PatientsController {
             patientsRepository.deleteById(id);
         }
         // Redirect back to the patient list
-        return "redirect:/patientsList";
+        return "redirect:/list";
     }
 
     @GetMapping("/patient/{id}")
@@ -79,7 +79,7 @@ public class PatientsController {
         PatientsModel patient = patientService.getDataById(id);
         // Add the patient object to the model for rendering in the template
         model.addAttribute("patient", patient);
-        return "patients/patientView"; // This is the name of your Thymeleaf template
+        return "patients/view"; // This is the name of your Thymeleaf template
     }
 
     @PostMapping("/update-diagnosis/{id}")
@@ -94,7 +94,7 @@ public class PatientsController {
     }
 
     /* Pagination output all data and sort by id */
-    @GetMapping("/patientsList")
+    @GetMapping("/list")
     public String getAllData(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "5") Integer pageSize,
@@ -106,7 +106,7 @@ public class PatientsController {
         );
         model.addAttribute("patientsList", page);
 
-        return "patients/patientsList";
+        return "patients/list";
     }
 }
 
