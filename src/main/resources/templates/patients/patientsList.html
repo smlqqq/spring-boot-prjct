@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Patient List</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
 </head>
 <body>
 <div class="terminal">
@@ -43,25 +44,53 @@
         <a class="button" href="/logout">Logout</a>
     </div>
 
-    <!-- Pagination -->
     <div class="pagination">
         <ul>
             <li th:if="${patientsList.hasPrevious()}">
                 <a th:href="@{/patientsList(pageNo=${patientsList.previousPageable.pageNumber}, pageSize=${patientsList.size}, sortBy=${param.sortBy})}">&laquo;</a>
             </li>
-            <li th:each="page : ${#numbers.sequence(0, patientsList.totalPages - 1)}">
-            <span th:if="${page == patientsList.number}">
-                <b th:text="${page + 1}"></b>
+            <!-- Проверьте, что patientsList не равен null перед его использованием -->
+            <li th:if="${patientsList != null}">
+                <!-- Добавляем двойную стрелку для первой страницы -->
+                <span th:if="${patientsList.number > 1}">
+                <a th:href="@{/patientsList(pageNo=0, pageSize=${patientsList.size}, sortBy=${param.sortBy})}"
+                   th:text="1"></a>
+
+                    <span th:if="${patientsList.number > 2}">
+                <span>...</span>
+
             </span>
-                <span th:unless="${page == patientsList.number}">
-                <a th:href="@{/patientsList(pageNo=${page}, pageSize=${patientsList.size}, sortBy=${param.sortBy})}" th:text="${page + 1}"></a>
             </span>
-            </li>
+                <!-- Отображаем страницу перед текущей, если она существует -->
+                <span th:if="${patientsList.number > 0}">
+                <a th:href="@{/patientsList(pageNo=${patientsList.number - 1}, pageSize=${patientsList.size}, sortBy=${param.sortBy})}"
+                   th:text="${patientsList.number}"></a>
+            </span>
+                <!-- Отображаем текущую страницу -->
+                <span><b th:text="${patientsList.number + 1}"></b></span>
+                <!-- Отображаем страницу после текущей, если она существует -->
+                <span th:if="${patientsList.number + 1 < patientsList.totalPages}">
+                <a th:href="@{/patientsList(pageNo=${patientsList.number + 1}, pageSize=${patientsList.size}, sortBy=${param.sortBy})}"
+                   th:text="${patientsList.number + 2}"></a>
+
+                     <span th:if="${patientsList.number + 2 < patientsList.totalPages}">
+                <span>...</span>
+
+            </span>
+            </span>
+                <!-- Добавляем двойную стрелку для последней страницы -->
+                <span th:if="${patientsList.number + 2 < patientsList.totalPages}">
+                <a th:href="@{/patientsList(pageNo=${patientsList.totalPages - 1}, pageSize=${patientsList.size}, sortBy=${param.sortBy})}"
+                   th:text="${patientsList.totalPages}"></a>
+            </span>
+                <!-- Отображаем стрелку "вперед", если есть следующая страница -->
             <li th:if="${patientsList.hasNext()}">
                 <a th:href="@{/patientsList(pageNo=${patientsList.nextPageable.pageNumber}, pageSize=${patientsList.size}, sortBy=${param.sortBy})}">&raquo;</a>
             </li>
+            </li>
         </ul>
     </div>
+
 
 </div>
 </body>
@@ -77,6 +106,8 @@
         align-items: center;
         height: 100vh;
         margin: 0;
+        padding: 0;
+        box-sizing: border-box;
     }
 
     .terminal {
@@ -114,6 +145,7 @@
         background-color: #1d1f21;
         color: #c5c8c6;
     }
+
     .button-container {
         text-align: left;
     }
@@ -173,9 +205,9 @@
     }
 
 
-    .pagination b{
+    .pagination b {
         text-decoration: none;
-        background-color:  #1d1f21;
+        background-color: #1d1f21;
         color: #c5c8c6;
         padding: 5px 10px;
         border: 2px solid #c5c8c6;

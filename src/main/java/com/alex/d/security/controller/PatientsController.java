@@ -97,7 +97,7 @@ public class PatientsController {
     @GetMapping("/patientsList")
     public String getAllPatients(
             @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "3") Integer pageSize,
+            @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy,
             Model model) {
 
