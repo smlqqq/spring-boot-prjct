@@ -38,13 +38,10 @@
         </tbody>
     </table>
 
-
-
-
-
-    <a href="/addPatient" class="button">Add</a>
-    <a href="/logout" class="button">Log out</a>
-
+    <div class="button-container">
+        <a class="button" href="/addPatient">Add</a>
+        <a class="button" href="/logout">Logout</a>
+    </div>
 
     <!-- Pagination -->
     <div class="pagination">
@@ -54,7 +51,7 @@
             </li>
             <li th:each="page : ${#numbers.sequence(0, patientsList.totalPages - 1)}">
             <span th:if="${page == patientsList.number}">
-                <span th:text="${page + 1}"></span>
+                <b th:text="${page + 1}"></b>
             </span>
                 <span th:unless="${page == patientsList.number}">
                 <a th:href="@{/patientsList(pageNo=${page}, pageSize=${patientsList.size}, sortBy=${param.sortBy})}" th:text="${page + 1}"></a>
@@ -66,32 +63,11 @@
         </ul>
     </div>
 
-
-
-
 </div>
 </body>
 </html>
 
 <style>
-
-    .pagination a {
-        color: black;
-        float: left;
-        padding: 8px 16px;
-        text-decoration: none;
-        transition: background-color .3s;
-    }
-
-    /* Style the active/current link */
-    .pagination a.active {
-        background-color: dodgerblue;
-        color: white;
-    }
-
-    /* Add a grey background color on mouse-over */
-    .pagination a:hover:not(.active) {background-color: #ddd;}
-
     body {
         font-family: 'Courier New', Courier, monospace;
         background-color: #1d1f21;
@@ -138,6 +114,9 @@
         background-color: #1d1f21;
         color: #c5c8c6;
     }
+    .button-container {
+        text-align: left;
+    }
 
     .button {
         display: inline-block;
@@ -156,6 +135,54 @@
     .button:hover {
         background-color: #1d1f21;
         color: #c5c8c6;
+    }
+
+
+    .pagination {
+        margin-top: 20px;
+    }
+
+    .pagination ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination li {
+        display: inline;
+        margin: 0 5px;
+
+    }
+
+    .pagination a {
+        text-decoration: none;
+        background-color: #c5c8c6;
+        color: #1d1f21;
+        padding: 5px 10px;
+        border: 2px solid #c5c8c6;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
+    }
+
+    .pagination a:hover {
+        background-color: #1d1f21;
+        color: #c5c8c6;
+    }
+
+
+    .pagination b{
+        text-decoration: none;
+        background-color:  #1d1f21;
+        color: #c5c8c6;
+        padding: 5px 10px;
+        border: 2px solid #c5c8c6;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
     }
 
 </style>

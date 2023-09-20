@@ -93,34 +93,7 @@ public class PatientsController {
         return "redirect:/patient/" + id;
     }
 
-    // Pagination
-    @GetMapping("/users")
-    public ResponseEntity<List<PatientsModel>> getUsers(
-            @RequestParam(required = false) Long id,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "3") int size
-    ) {
-        return ResponseEntity.ok(patientService.findPatientsById(
-                id, PageRequest.of(page, size)
-        ));
-
-    }
-
-  /*  @GetMapping("/user")
-    public ResponseEntity<List<PatientsModel>> getAllPatients(
-            @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "3") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy,
-            Model model) {
-
-        List<PatientsModel> patients = patientsRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
-        model.addAttribute("patientsList", patients);
-
-        List<PatientsModel> list = patientService.getAllPatients(pageNo,pageSize,sortBy);
-        model.addAttribute("user",list);
-        return new ResponseEntity<List<PatientsModel>>(list, new HttpHeaders(), HttpStatus.OK);
-    }*/
-
+    /* Pagination output all data and sort by id */
     @GetMapping("/patientsList")
     public String getAllPatients(
             @RequestParam(defaultValue = "0") Integer pageNo,

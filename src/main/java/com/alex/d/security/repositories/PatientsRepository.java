@@ -11,12 +11,8 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface PatientsRepository extends JpaRepository<PatientsModel, Long>, PagingAndSortingRepository<PatientsModel, Long> {
+public interface PatientsRepository extends JpaRepository<PatientsModel, Long> {
     Optional<PatientsModel> findByIdOrderByIdAsc (Long id);
-    Page<PatientsModel> findById (Long id, Pageable pageable);
-
     Page<PatientsModel> findAll(Pageable pageable);
-
-    List<PatientsModel> findPatientsModelById(Long id, Pageable pageable);
 
 }
