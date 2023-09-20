@@ -1,8 +1,8 @@
 package com.alex.d.security.controller;
 
-import com.alex.d.security.repositories.PaginationRepository;
 import com.alex.d.security.service.PatientService;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpHeaders;
@@ -29,10 +29,9 @@ public class PatientsController {
     private final PatientsRepository patientsRepository;
 
     @Autowired
-    public PatientsController(PatientsRepository patientsRepository, PatientService patientService, PaginationRepository paginationRepository) {
+    public PatientsController(PatientsRepository patientsRepository, PatientService patientService) {
         this.patientsRepository = patientsRepository;
         this.patientService = patientService;
-        this.paginationRepository = paginationRepository;
     }
 
     @GetMapping("/addPatient")
@@ -53,13 +52,13 @@ public class PatientsController {
         return "redirect:/patientsList";
     }
 
-    @GetMapping("/patientsList")
+   /* @GetMapping("/patientsList")
     public String listPatients(Model model) {
 //        List<PatientsModel> patients = patientsRepository.findAll();
         List<PatientsModel> patients = patientsRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         model.addAttribute("patientsList", patients);
         return "patients/patientsList";
-    }
+    }*/
 
 
     @GetMapping("/delete-patient/{id}")
@@ -106,8 +105,8 @@ public class PatientsController {
         ));
 
     }
-    private final PaginationRepository paginationRepository;
-    @GetMapping("/user")
+
+  /*  @GetMapping("/user")
     public ResponseEntity<List<PatientsModel>> getAllPatients(
             @RequestParam(defaultValue = "0") Integer pageNo,
             @RequestParam(defaultValue = "3") Integer pageSize,
@@ -120,6 +119,21 @@ public class PatientsController {
         List<PatientsModel> list = patientService.getAllPatients(pageNo,pageSize,sortBy);
         model.addAttribute("user",list);
         return new ResponseEntity<List<PatientsModel>>(list, new HttpHeaders(), HttpStatus.OK);
+    }*/
+
+    @GetMapping("/patientsList")
+    public String getAllPatients(
+            @RequestParam(defaultValue = "0") Integer pageNo,
+            @RequestParam(defaultValue = "3") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy,
+            Model model) {
+
+        Page<PatientsModel> page = patientsRepository.findAll(
+                PageRequest.of(pageNo, pageSize, Sort.by(sortBy))
+        );
+        model.addAttribute("patientsList", page);
+
+        return "patients/patientsList";
     }
 }
 

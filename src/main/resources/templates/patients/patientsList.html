@@ -38,14 +38,60 @@
         </tbody>
     </table>
 
+
+
+
+
     <a href="/addPatient" class="button">Add</a>
     <a href="/logout" class="button">Log out</a>
+
+
+    <!-- Pagination -->
+    <div class="pagination">
+        <ul>
+            <li th:if="${patientsList.hasPrevious()}">
+                <a th:href="@{/patientsList(pageNo=${patientsList.previousPageable.pageNumber}, pageSize=${patientsList.size}, sortBy=${param.sortBy})}">&laquo;</a>
+            </li>
+            <li th:each="page : ${#numbers.sequence(0, patientsList.totalPages - 1)}">
+            <span th:if="${page == patientsList.number}">
+                <span th:text="${page + 1}"></span>
+            </span>
+                <span th:unless="${page == patientsList.number}">
+                <a th:href="@{/patientsList(pageNo=${page}, pageSize=${patientsList.size}, sortBy=${param.sortBy})}" th:text="${page + 1}"></a>
+            </span>
+            </li>
+            <li th:if="${patientsList.hasNext()}">
+                <a th:href="@{/patientsList(pageNo=${patientsList.nextPageable.pageNumber}, pageSize=${patientsList.size}, sortBy=${param.sortBy})}">&raquo;</a>
+            </li>
+        </ul>
+    </div>
+
+
+
 
 </div>
 </body>
 </html>
 
 <style>
+
+    .pagination a {
+        color: black;
+        float: left;
+        padding: 8px 16px;
+        text-decoration: none;
+        transition: background-color .3s;
+    }
+
+    /* Style the active/current link */
+    .pagination a.active {
+        background-color: dodgerblue;
+        color: white;
+    }
+
+    /* Add a grey background color on mouse-over */
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+
     body {
         font-family: 'Courier New', Courier, monospace;
         background-color: #1d1f21;
