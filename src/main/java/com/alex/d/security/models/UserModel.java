@@ -1,15 +1,12 @@
 package com.alex.d.security.models;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.stereotype.Repository;
-@Repository
-@Getter
-@Setter
+
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
 @Entity
-@Table(name = "users")
+@Table(name = "users", schema = "users")
 public class UserModel {
 
     @Id
