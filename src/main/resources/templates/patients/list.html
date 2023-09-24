@@ -47,13 +47,13 @@
     <div class="pagination">
         <ul>
             <li th:if="${list.hasPrevious()}">
-                <a th:href="@{/list(pageNo=${list.previousPageable.pageNumber}, pageSize=${list.size}, sortBy=${param.sortBy})}">&laquo;</a>
+                <a th:href="@{/list(page=${list.previousPageable.pageNumber}, size=${list.size}, sort=${param.sort})}">&laquo;</a>
             </li>
             <!-- Проверьте, что patientsList не равен null перед его использованием -->
             <li th:if="${list != null}">
                 <!-- Добавляем двойную стрелку для первой страницы -->
                 <span th:if="${list.number > 1}">
-                <a th:href="@{/list(pageNo=0, pageSize=${list.size}, sortBy=${param.sortBy})}"
+                <a th:href="@{/list(page=0, size=${list.size}, sort=${param.sort})}"
                    th:text="1"></a>
 
                     <span th:if="${list.number > 2}">
@@ -63,14 +63,14 @@
             </span>
                 <!-- Отображаем страницу перед текущей, если она существует -->
                 <span th:if="${list.number > 0}">
-                <a th:href="@{/list(pageNo=${list.number - 1}, pageSize=${list.size}, sortBy=${param.sortBy})}"
+                <a th:href="@{/list(page=${list.number - 1}, size=${list.size}, sort=${param.sort})}"
                    th:text="${list.number}"></a>
             </span>
                 <!-- Отображаем текущую страницу -->
                 <span><b th:text="${list.number + 1}"></b></span>
                 <!-- Отображаем страницу после текущей, если она существует -->
                 <span th:if="${list.number + 1 < list.totalPages}">
-                <a th:href="@{/list(pageNo=${list.number + 1}, pageSize=${list.size}, sortBy=${param.sortBy})}"
+                <a th:href="@{/list(page=${list.number + 1}, size=${list.size}, sort=${param.sort})}"
                    th:text="${list.number + 2}"></a>
 
                      <span th:if="${list.number + 2 < list.totalPages}">
@@ -80,12 +80,12 @@
             </span>
                 <!-- Добавляем двойную стрелку для последней страницы -->
                 <span th:if="${list.number + 2 < list.totalPages}">
-                <a th:href="@{/list(pageNo=${list.totalPages - 1}, pageSize=${list.size}, sortBy=${param.sortBy})}"
+                <a th:href="@{/list(page=${list.totalPages - 1}, size=${list.size}, sort=${param.sort})}"
                    th:text="${list.totalPages}"></a>
             </span>
                 <!-- Отображаем стрелку "вперед", если есть следующая страница -->
             <li th:if="${list.hasNext()}">
-                <a th:href="@{/list(pageNo=${list.nextPageable.pageNumber}, pageSize=${list.size}, sortBy=${param.sortBy})}">&raquo;</a>
+                <a th:href="@{/list(page=${list.nextPageable.pageNumber}, size=${list.size}, sort=${param.sort})}">&raquo;</a>
             </li>
             </li>
         </ul>

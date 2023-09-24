@@ -89,15 +89,15 @@ public class PatientsController {
     /* Pagination output all data and sort by id */
     @GetMapping("/list")
     public String getAllData(
-            @RequestParam(defaultValue = "0") Integer pageNo,
-            @RequestParam(defaultValue = "5") Integer pageSize,
-            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "0") Integer page,
+            @RequestParam(defaultValue = "5") Integer size,
+            @RequestParam(defaultValue = "id") String sort,
             Model model) {
 
-        Page<PatientsModel> page = patientsRepository.findAll(
-                PageRequest.of(pageNo, pageSize, Sort.by(sortBy))
+        Page<PatientsModel> pages = patientsRepository.findAll(
+                PageRequest.of(page, size, Sort.by(sort))
         );
-        model.addAttribute("list", page);
+        model.addAttribute("list", pages);
 
         return "patients/list";
     }
