@@ -2,6 +2,8 @@ package com.alex.d.security.models;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.stereotype.Repository;
+
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

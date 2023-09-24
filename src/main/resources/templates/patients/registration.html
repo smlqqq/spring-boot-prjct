@@ -127,7 +127,7 @@
 ╚═╝░░╚═╝╚═════╝░╚═════╝░
     </pre>
   <h1 class="title">Add Patient</h1>
-  <form th:object="${patient}" th:action="@{/addPatient}" method="post">
+  <form th:object="${patient}" th:action="@{/registration}" method="post">
     <label for="firstName">First Name:</label>
     <input type="text" id="firstName" th:field="*{first_name}" required>
     <br>
