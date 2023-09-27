@@ -1,11 +1,9 @@
-/*
 package com.alex.d.security.models;
 
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.Set;
@@ -16,7 +14,7 @@ import java.util.Set;
 @Entity
 //@Table(name = "role", schema = "user")
 @Table(name = "role")
-public class Role {
+public class RoleModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,9 +23,10 @@ public class Role {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roleModel")
     private Set<UserModel> users;
 
 
+
+
 }
-*/

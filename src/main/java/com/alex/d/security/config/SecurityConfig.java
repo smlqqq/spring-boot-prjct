@@ -1,6 +1,8 @@
 /*
 package com.alex.d.security.config;
 
+*/
+/*
 import com.alex.d.security.repositories.PatientsRepository;
 import com.alex.d.security.repositories.UserRepository;
 import com.alex.d.security.service.UserDetailServiceImpl;
@@ -56,8 +58,11 @@ public class SecurityConfig {
 }
 *//*
 
-package com.alex.d.security.config;
 
+
+
+
+import com.alex.d.security.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -66,20 +71,27 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+
+import javax.sql.DataSource;
 
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
 
 
-    private final UserDetailsService userDetailsService;
 
-    public SecurityConfig(UserDetailsService userDetailsService) {
-        this.userDetailsService = userDetailsService;
+    private final UserRepository userRepository;
+
+
+    public SecurityConfig(UserRepository userRepository) {
+
+        this.userRepository = userRepository;
+
     }
 
 
@@ -89,8 +101,10 @@ public class SecurityConfig {
     }
 
 
-   */
-/* @Autowired
+
+
+ */
+/*@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth)
             throws Exception {
 
@@ -101,8 +115,9 @@ public class SecurityConfig {
 
 
 
-*/
-/*    @Bean
+
+   */
+/* @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable().authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/, /login, /signup, /logout").permitAll()
@@ -115,27 +130,81 @@ public class SecurityConfig {
     }*//*
 
 
+
+*/
+/*  @Bean
+    public UserDetailsService users(DataSource dataSource) {
+        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+        // Create a default user with a secure password and the "ROLE_USER" role
+        UserDetails defaultUser = User.withUsername("your_username_here")
+                .password("{bcrypt}$2a$10$1234567890abcdefghijklmnopqrstuvwxyz")
+                .roles("ROLE_USER")
+                .build();
+
+        users.createUser(defaultUser);
+
+        return users;
+    }*//*
+
+
+
+
+ */
+/*   @Bean
+    public UserDetailsService users(DataSource dataSource) {
+        UserDetails user = User.withDefaultPasswordEncoder()
+                .username(userModel.getName())
+                .password("password")
+                .roles("USER")
+                .build();
+        JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+        users.createUser(user);
+        return users;
+    }*//*
+
+
+
+
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-                .authorizeHttpRequests(requests -> requests
-                       */
-/* .requestMatchers("/admin_dash").hasRole("ADMIN")
-                        .requestMatchers("/user_dash").hasRole( "USER")*//*
-
+*/
+/* .authorizeHttpRequests(requests -> requests
+                        .requestMatchers("/admin_dash").hasRole("ADMIN")
+                        .requestMatchers("/user_dash").hasRole( "USER")
                         .requestMatchers("/", "/login", "/registration", "/logout").permitAll()
                         .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
+                        .anyRequest().authenticated()*//*
+
+
+
+
+
+                .authorizeHttpRequests(requests -> requests
+
+
+                        .requestMatchers("/admin_dash").hasRole("ADMIN")
+                        .requestMatchers("/user_dash").hasRole("USER")
+                        .requestMatchers("/", "/login", "/register", "/logout").permitAll()
+//                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
+
+*/
+/*   .authorizeHttpRequests((authorize) ->
+                        authorize.anyRequest().authenticated()*//*
+
+
                 )
+
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .loginProcessingUrl("/login")
-                        */
-/*.defaultSuccessUrl("/user")*//*
-
-                        .failureUrl("/login?error")
+//                        .loginProcessingUrl("/list")
+                        .defaultSuccessUrl("/list", true)
+                        .failureUrl("/")
                         .permitAll()
                 )
+
                 .logout(logout -> logout
                         .logoutUrl("logout")
                         .logoutSuccessUrl("/")
@@ -143,4 +212,18 @@ public class SecurityConfig {
 
         return http.build();
     }
-}*/
+
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return (web) -> web.ignoring().requestMatchers("/images/**", "/js/**", "/webjars/**");
+//    }
+
+
+ @Bean
+    JdbcUserDetailsManager users(DataSource dataSource){
+         JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager(dataSource);
+         return jdbcUserDetailsManager;
+    }
+
+}
+*/
