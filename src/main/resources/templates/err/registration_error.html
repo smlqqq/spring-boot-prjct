@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Error</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #1d1f21;
+            color: #c5c8c6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow-x: hidden;
+            position: fixed;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            background-color: #c5c8c6;
+            color: #1d1f21;
+            padding: 10px 20px;
+            border: 2px solid #c5c8c6;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        a:hover {
+            background-color: #1d1f21;
+            color: #c5c8c6;
+        }
+    </style>
 </head>
 <body>
-<h1> This login is in use, try another. </h1>
-<a href="/register">navigate to registration</a>
+<h1>This login is in use, try another.</h1>
+<a href="/register">Navigate to registration</a>
 </body>
 </html>

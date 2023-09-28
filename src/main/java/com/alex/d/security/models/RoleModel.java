@@ -26,7 +26,4 @@ public class RoleModel {
     @ManyToMany(mappedBy = "roleModel")
     private Set<UserModel> users;
 
-
-
-
 }

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-public class PatientsController {
+public final class PatientsController {
     //MVC
     //REST
     private final PatientService patientService;

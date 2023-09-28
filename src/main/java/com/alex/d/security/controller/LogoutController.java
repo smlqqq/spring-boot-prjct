@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-public class LogoutController {
+public final class LogoutController {
     //MVC
     //REST
     SecurityContextLogoutHandler logoutHandler = new SecurityContextLogoutHandler();

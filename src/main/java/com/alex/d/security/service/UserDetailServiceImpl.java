@@ -1,6 +1,5 @@
 package com.alex.d.security.service;
 
-import com.alex.d.security.models.RoleModel;
 import com.alex.d.security.models.UserModel;
 import com.alex.d.security.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,9 +10,6 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {

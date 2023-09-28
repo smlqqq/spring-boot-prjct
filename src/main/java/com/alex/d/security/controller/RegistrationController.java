@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class RegistrationController {
+public final class RegistrationController {
 
     private final UserService userService;
     private final BCryptPasswordEncoder passwordEncoder;
@@ -28,7 +28,7 @@ public class RegistrationController {
         String encodedPassword = passwordEncoder.encode(userModel.getPassword());
         userModel.setPassword(encodedPassword);
         UserModel registeredUser = userService.registerUser(userModel.getName(), userModel.getLogin(), userModel.getPassword());
-        return registeredUser == null ? "err/registration_error" : "redirect:/login"; // Перенаправление после успешной регистрации
+        return registeredUser == null ? "err/registration_error" : "redirect:/login";
     }
 
     @GetMapping("/register")
@@ -37,3 +37,25 @@ public class RegistrationController {
         return "user/registration";
     }
 }
+
+
+
+
+//    @PostMapping("/register")
+//    public String register(@ModelAttribute UserModel userModel) {
+//        System.out.println("Register request " + userModel);
+//        String encodedPassword = passwordEncoder.encode(userModel.getPassword());
+//        userModel.setPassword(encodedPassword);
+//        RoleModel userRole = roleRepository.findByName("USER");
+//        if (userRole == null) {
+//            userRole = new RoleModel();
+//            userRole.setName("USER");
+//            roleRepository.save(userRole);
+//        }
+//
+//
+//        UserModel registeredUser = userService.registerUser(userModel.getName(), userModel.getLogin(), userModel.getPassword());
+//        registeredUser.addRole(userRole); // Добавление роли к пользователю
+//        userService.saveUser(registeredUser);
+//   return registeredUser == null ? "err/registration_error" : "redirect:/login";
+//           }

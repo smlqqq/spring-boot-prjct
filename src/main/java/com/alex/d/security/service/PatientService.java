@@ -2,15 +2,8 @@ package com.alex.d.security.service;
 
 import com.alex.d.security.models.PatientsModel;
 import com.alex.d.security.repositories.PatientsRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 @Service
 public class PatientService {
@@ -22,14 +15,8 @@ public class PatientService {
     }
 
     public PatientsModel getDataById(Long id) {
-        // Use the patientsRepository to retrieve the patient by ID
         Optional<PatientsModel> patientOptional = patientsRepository.findById(id);
-        // Check if the patient was found
-        if (patientOptional.isPresent()) {
-            return patientOptional.get(); // Return the patient if found
-        } else {
-            return null; // Return null or handle the case where the patient is not found
-        }
+        return patientOptional.orElse(null);
     }
 
     public void saveData(PatientsModel patientsModel) {

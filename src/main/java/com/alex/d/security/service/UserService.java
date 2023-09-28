@@ -2,9 +2,7 @@ package com.alex.d.security.service;
 
 import com.alex.d.security.models.UserModel;
 import com.alex.d.security.repositories.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

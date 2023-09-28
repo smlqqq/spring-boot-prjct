@@ -33,8 +33,6 @@ public class UserModel implements UserDetails {
    /* @Column(name = "role")
     private String role;*/
 
-    @Transient
-    private String confirmPassword;
 
     /* @Getter
      @ManyToMany
@@ -54,7 +52,7 @@ public class UserModel implements UserDetails {
     private Set<RoleModel> roleModel;
 
 
-   /* public Collection<GrantedAuthority> getAuthorities() {
+ /*   public Collection<GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = new HashSet<>();
         for (RoleModel roleModel : roleModel) {
             authorities.add(new SimpleGrantedAuthority(roleModel.getName()));
@@ -66,7 +64,7 @@ public class UserModel implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
+        return List.of(new SimpleGrantedAuthority("USER"));
     }
 
     @Override

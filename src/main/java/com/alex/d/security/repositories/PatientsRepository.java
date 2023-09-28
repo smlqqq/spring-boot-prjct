@@ -12,8 +12,5 @@ import java.util.Optional;
 
 @Repository
 public interface PatientsRepository extends JpaRepository<PatientsModel, Long> {
-    Optional<PatientsModel> findByIdOrderByIdAsc (Long id);
-  /*  List<PatientsModel> findAll(Long id);
-    Page<PatientsModel> findAll(Pageable pageable);*/
 
 }
