@@ -1,72 +1,90 @@
 package com.alex.d.security.service;
 
+
+import com.alex.d.security.models.RoleModel;
 import com.alex.d.security.models.UserModel;
+import com.alex.d.security.repositories.RoleRepository;
 import com.alex.d.security.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
+import java.util.*;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
+
+
+
+
     public UserDetailServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
+
     }
+
+
+
+//    @Override
+//    public UserDetails loadUserByUsername(String login) {
+//        UserModel user = userRepository.findByLogin(login)
+//                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + login));
+//
+//        return User.builder()
+//                .username(user.getLogin())
+//                .password(user.getPassword())
+//                .authorities(user.getAuthorities())
+//                .build();
+//    }
+
+    public UserModel registerUser(String name, String login, String password) {
+        if (name != null && !name.isEmpty() && login != null && !login.isEmpty() && password != null && !password.isEmpty()) {
+            if (userRepository.findByLogin(login).isPresent()) {
+                System.out.println("This login is in use");
+                return null;
+            }
+            UserModel userModel = new UserModel();
+            userModel.setName(name);
+            userModel.setLogin(login);
+            userModel.setPassword(password);
+
+
+
+            return userRepository.save(userModel);
+        } else {
+            System.out.println("Incorrect data");
+            return null;
+        }
+    }
+
+
 
     @Override
-    public UserDetails loadUserByUsername(String login)  {
-        // Здесь вы должны запросить пользователя из вашей базы данных по его логину (username)
-        // и вернуть объект UserDetails, представляющий этого пользователя.
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // Загрузите пользователя по имени пользователя (логину)
+        UserModel user = userRepository.findByLogin(username).orElseThrow(() ->
+                new UsernameNotFoundException("User not found: " + username)
+        );
 
-        // Ниже приведен пример:
+        // Получите роли пользователя из модели
+        Set<RoleModel> userRoles = user.getRole();
 
-        UserModel user = userRepository.findByLogin(login)
-                .orElseThrow(() -> new UsernameNotFoundException("Пользователь с именем " + login + " не найден"));
+        // Преобразуйте роли в коллекцию GrantedAuthority
+        List<GrantedAuthority> authorities = new ArrayList<>();
+        for (RoleModel role : userRoles) {
+            authorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
 
-//        Collection<GrantedAuthority> authorities = user.getAuthorities(); // Retrieve user's authorities (roles)
-        Collection<? extends GrantedAuthority> authorities = user.getAuthorities(); // Retrieve user's authorities (roles)
-
-        /*return new org.springframework.security.core.userdetails.User(
-                user.getLogin(),
-                user.getPassword(),
-                authorities
-        );*/
-
-         return User.builder()
-                .username(user.getLogin())
-                .password(user.getPassword())
-                .authorities(authorities)
-                .build();
-
-
-
-
-        // Создайте объект UserDetails на основе информации из UserModel
-        /* return User.builder()
-                .username(user.getLogin())
-                .password(user.getPassword())
-//                .roles(user.getRoleModel())
-                .build();*/
-
-
+        // Создайте UserDetails с полученными ролями
+        return new User(user.getLogin(), user.getPassword(), authorities);
     }
 
-  /*  @Override
-    public UserDetails loadUserByUsername(String login) {
-       UserModel user = userRepository.findByLogin(login);
-        if (user == null) {
-            throw new UsernameNotFoundException("User not found: " + login);
-        }
-        List<RoleModel> roles = user.getRoles(); // Retrieve roles associated with the user
-        return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
-                user.getPassword(),
-                roles.stream().map(Role::getName).toArray(String[]::new)
-        );
-    }*/
+
+
 }
+
+
