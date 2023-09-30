@@ -1,5 +1,7 @@
 package com.alex.d.security;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
@@ -9,14 +11,21 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class SecurityApplication {
 
+private final static Logger LOGGER = LogManager.getLogger(SecurityApplication.class);
 
     public static void main(String[] args) {
         SpringApplication.run(SecurityApplication.class, args);
+        LOGGER.debug("Debugging log");
+        LOGGER.info("Info log");
+
     }
+
+
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
 
 }

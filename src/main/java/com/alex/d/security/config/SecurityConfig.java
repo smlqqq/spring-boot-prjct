@@ -57,6 +57,8 @@ public class SecurityConfig {
 */
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -70,51 +72,51 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
+    private final Logger log = LoggerFactory.getLogger(SecurityConfig.class);
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
 //    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//        http
+//    public SecurityFilterChain filterSecurity(HttpSecurity http) throws Exception {
 //
-//                .authorizeHttpRequests(requests -> requests
+//        http
+//                .csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests((authorize) -> authorize
 //                        .requestMatchers("/admin_dash").hasRole("ADMIN")
 //                        .requestMatchers("/user_dash").hasRole("USER")
-//                        .requestMatchers("/", "/login", "/registration", "/logout").permitAll()
+//                        .requestMatchers("/", "/login", "/register", "/logout").permitAll()
+////                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
 //                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
-//                        .anyRequest().authenticated())
-//
-///*   .authorizeHttpRequests((authorize) ->
-//                        authorize.anyRequest().authenticated()*/
-//
-//                .formLogin(form -> form
+//                        .anyRequest().authenticated()
+//                )
+//                .formLogin(
+//                        form -> form
 //                                .loginPage("/login")
-////                              .loginProcessingUrl("/list")
-//                                .defaultSuccessUrl("/list", true)
-//                                .failureUrl("/")
+//                                .loginProcessingUrl("/login")
+//                                .defaultSuccessUrl("/")
 //                                .permitAll()
 //                )
-//
-//                .logout(logout -> logout
-//                        .logoutUrl("logout")
-//                        .logoutSuccessUrl("/")
-//                        .permitAll());
-//
+//                .logout(
+//                        logout -> logout
+//                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                                .logoutSuccessUrl("/")
+//                                .permitAll()
+//                );
 //        return http.build();
 //    }
-//}
-//
 
     @Bean
     public SecurityFilterChain filterSecurity(HttpSecurity http) throws Exception {
 
-        http.csrf(AbstractHttpConfigurer::disable)
+        http
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests((authorize) -> authorize
                         .requestMatchers("/admin_dash").hasRole("ADMIN")
                         .requestMatchers("/user_dash").hasRole("USER")
                         .requestMatchers("/", "/login", "/register", "/logout").permitAll()
+//                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
                         .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
                         .anyRequest().authenticated()
                 )

@@ -1,8 +1,10 @@
 package com.alex.d.security.controller;
 
+import com.alex.d.security.models.UserModel;
 import com.alex.d.security.service.PatientService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.ui.Model;
 import com.alex.d.security.models.PatientsModel;
@@ -101,5 +103,14 @@ public final class PatientsController {
 
         return "patients/list";
     }
+
+//    private int pageSize = 10;
+//    @GetMapping("/list")
+//    public  String getAllData(PatientsModel patientsModel, Model model){
+//        Pageable pageable = PageRequest.of(0, pageSize);
+//        model.addAttribute("list",
+//                patientsRepository.findAll(pageable));
+//        return "patients/list";
+//    }
 }
 

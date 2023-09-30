@@ -23,7 +23,7 @@ public class RoleModel {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(mappedBy = "roleModel")
+    @ManyToMany(mappedBy = "role")
     private Set<UserModel> users;
 
 }
