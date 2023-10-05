@@ -2,6 +2,9 @@ package com.alex.d.security.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Collection;
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,7 +18,7 @@ import java.util.*;
 @Entity
 @Table(name = "users")
 /*@Table(name = "users", schema = "user")*/
-public class UserModel implements UserDetails {
+public class UserModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,16 +33,16 @@ public class UserModel implements UserDetails {
     @Column(name = "password")
     private String password;
 
-   /* @Column(name = "role")
-    private String role;*/
+//    @Column(name = "role")
+//    private String role;
 
 
-    /* @Getter
-     @ManyToMany
-     @JoinTable(name = "user_role",
-             joinColumns = @JoinColumn(name = "user_id"),
-             inverseJoinColumns = @JoinColumn(name = "role_id"))
-     private Set<Role> roles;*/
+//     @Getter
+//     @ManyToMany
+//     @JoinTable(name = "user_role",
+//             joinColumns = @JoinColumn(name = "user_id"),
+//             inverseJoinColumns = @JoinColumn(name = "role_id"))
+//     private Set<RoleModel> roleModel;
 
     @Getter
     @ManyToMany(fetch = FetchType.LAZY)
@@ -49,52 +52,36 @@ public class UserModel implements UserDetails {
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
-    private Set<RoleModel> roleModel;
+    private Set<RoleModel> role = new HashSet<>();
+
+//    @Getter
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(name = "user_role",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    private Set<RoleModel> role;
 
 
- /*   public Collection<GrantedAuthority> getAuthorities() {
-        Set<GrantedAuthority> authorities = new HashSet<>();
-        for (RoleModel roleModel : roleModel) {
-            authorities.add(new SimpleGrantedAuthority(roleModel.getName()));
-        }
-
-        return authorities;
-    }*/
 
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of(new SimpleGrantedAuthority("USER"));
-    }
+//    @ManyToMany(fetch = FetchType.LAZY)
+//    @JoinTable(
+//            name = "user_role",
+//            joinColumns = @JoinColumn(name = "user_id"),
+//            inverseJoinColumns = @JoinColumn(name = "role_id")
+//    )
+//    private Set<RoleModel> role;
 
-    @Override
-    public String getPassword() {
-        return password;
-    }
-    @Override
-    public String getUsername() {
-        return login;
-    }
+//    @Override
+//    public Collection<GrantedAuthority> getAuthorities() {
+//        Set<GrantedAuthority> authorities = new HashSet<>();
+//        for (RoleModel roleModel : role) {
+//            authorities.add(new SimpleGrantedAuthority(roleModel.getName()));
+//        }
+//        return authorities;
+//    }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
 
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return true;
-    }
 
 
 }

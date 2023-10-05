@@ -3,7 +3,6 @@ package com.alex.d.security.service;
 
 import com.alex.d.security.models.RoleModel;
 import com.alex.d.security.models.UserModel;
-import com.alex.d.security.repositories.RoleRepository;
 import com.alex.d.security.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -41,16 +40,18 @@ public class UserDetailServiceImpl implements UserDetailsService {
 //                .build();
 //    }
 
-    public UserModel registerUser(String name, String login, String password) {
+    public UserModel registerUser(String name, String login, String password, Set<RoleModel> role) {
         if (name != null && !name.isEmpty() && login != null && !login.isEmpty() && password != null && !password.isEmpty()) {
             if (userRepository.findByLogin(login).isPresent()) {
                 System.out.println("This login is in use");
                 return null;
             }
+
             UserModel userModel = new UserModel();
             userModel.setName(name);
             userModel.setLogin(login);
             userModel.setPassword(password);
+            userModel.setRole(role);
 
 
 
@@ -65,22 +66,14 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        // Загрузите пользователя по имени пользователя (логину)
+
         UserModel user = userRepository.findByLogin(username).orElseThrow(() ->
                 new UsernameNotFoundException("User not found: " + username)
         );
 
-        // Получите роли пользователя из модели
-        Set<RoleModel> userRoles = user.getRole();
 
-        // Преобразуйте роли в коллекцию GrantedAuthority
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        for (RoleModel role : userRoles) {
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
-
-        // Создайте UserDetails с полученными ролями
-        return new User(user.getLogin(), user.getPassword(), authorities);
+//        return new User(user.getLogin(), user.getPassword(), authorities);
+        return new MyUserDetails(user);
     }
 
 
