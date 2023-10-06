@@ -23,7 +23,7 @@ private final static Logger LOGGER = LogManager.getLogger(SecurityApplication.cl
 
 
     @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
+    public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 

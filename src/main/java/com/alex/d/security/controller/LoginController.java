@@ -19,6 +19,8 @@ public final class LoginController {
     private final UserDetailServiceImpl userDetailService;
     private final BCryptPasswordEncoder passwordEncoder;
 
+
+
     public LoginController(UserDetailServiceImpl userDetailService, BCryptPasswordEncoder passwordEncoder) {
         this.userDetailService = userDetailService;
         this.passwordEncoder = passwordEncoder;

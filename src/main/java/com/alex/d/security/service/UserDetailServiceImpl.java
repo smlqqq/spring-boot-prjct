@@ -55,12 +55,15 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
 
 
+//            return userRepository.save(userModel);
             return userRepository.save(userModel);
         } else {
             System.out.println("Incorrect data");
             return null;
         }
     }
+
+
 
 
 
