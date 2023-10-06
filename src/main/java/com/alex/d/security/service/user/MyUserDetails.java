@@ -1,12 +1,10 @@
-package com.alex.d.security.service;
+package com.alex.d.security.service.user;
 
-import com.alex.d.security.models.RoleModel;
-import com.alex.d.security.models.UserModel;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.alex.d.security.models.user.RoleModel;
+import com.alex.d.security.models.user.UserModel;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Service;
 
 import java.util.*;
 

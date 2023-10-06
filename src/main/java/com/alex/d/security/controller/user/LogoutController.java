@@ -1,4 +1,4 @@
-package com.alex.d.security.controller;
+package com.alex.d.security.controller.user;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

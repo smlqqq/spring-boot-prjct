@@ -2,7 +2,7 @@
 //
 ///*
 //import com.alex.d.security.repositories.PatientsRepository;
-//import com.alex.d.security.repositories.UserRepository;
+//import com.alex.d.security.repositories.user.UserRepository;
 //import com.alex.d.security.service.UserDetailServiceImpl;
 //import org.springframework.context.annotation.Bean;
 //import org.springframework.context.annotation.Configuration;
@@ -57,7 +57,7 @@
 //*/
 //
 //
-//import com.alex.d.security.repositories.UserRepository;
+//import com.alex.d.security.repositories.user.UserRepository;
 //import com.alex.d.security.service.UserDetailServiceImpl;
 //import org.slf4j.Logger;
 //import org.slf4j.LoggerFactory;

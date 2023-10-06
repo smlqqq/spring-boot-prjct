@@ -1,8 +1,8 @@
-package com.alex.d.security.controller;
+package com.alex.d.security.controller.user;
 
 
-import com.alex.d.security.models.UserModel;
-import com.alex.d.security.service.UserDetailServiceImpl;
+import com.alex.d.security.models.user.UserModel;
+import com.alex.d.security.service.user.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;

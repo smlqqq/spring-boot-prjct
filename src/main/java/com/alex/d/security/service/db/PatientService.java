@@ -1,4 +1,4 @@
-package com.alex.d.security.service;
+package com.alex.d.security.service.db;
 
 import com.alex.d.security.models.PatientsModel;
 import com.alex.d.security.repositories.PatientsRepository;

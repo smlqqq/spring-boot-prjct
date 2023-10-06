@@ -1,12 +1,9 @@
-package com.alex.d.security.service;
+package com.alex.d.security.service.user;
 
 
-import com.alex.d.security.models.RoleModel;
-import com.alex.d.security.models.UserModel;
-import com.alex.d.security.repositories.UserRepository;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
+import com.alex.d.security.models.user.RoleModel;
+import com.alex.d.security.models.user.UserModel;
+import com.alex.d.security.repositories.user.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

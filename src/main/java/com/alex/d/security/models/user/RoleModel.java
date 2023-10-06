@@ -1,4 +1,4 @@
-package com.alex.d.security.models;
+package com.alex.d.security.models.user;
 
 
 import jakarta.persistence.*;

@@ -1,7 +1,7 @@
-package com.alex.d.security.repositories;
+package com.alex.d.security.repositories.user;
 
 
-import com.alex.d.security.models.UserModel;
+import com.alex.d.security.models.user.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,13 +1,7 @@
-package com.alex.d.security.models;
+package com.alex.d.security.models.user;
 
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.Collection;
-
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.*;
 
