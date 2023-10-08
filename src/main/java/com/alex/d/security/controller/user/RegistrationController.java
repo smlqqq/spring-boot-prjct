@@ -35,8 +35,8 @@ public final class RegistrationController {
         UserModel registeredUser = userDetailService.registerUser(
                 userModel.getName(),
                 userModel.getLogin(),
-                userModel.getPassword(),
-                userModel.getRole()
+                userModel.getPassword()
+
         );
         return registeredUser == null ? "err/registration_error" : "redirect:/login";
     }

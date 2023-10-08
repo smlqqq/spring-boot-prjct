@@ -12,6 +12,7 @@ import java.util.*;
 public class MyUserDetails implements UserDetails {
 
     private final UserModel user;
+
     public MyUserDetails(UserModel user){
         this.user = user;
     }
@@ -42,14 +43,19 @@ public class MyUserDetails implements UserDetails {
     }
 
 
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//      Set<RoleModel>roles = user.getRole();
+//        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+//        for(RoleModel role : roles){
+//            authorities.add(new SimpleGrantedAuthority(role.getName()));
+//        }
+//        return authorities;
+//    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-      Set<RoleModel>roles = user.getRole();
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for(RoleModel role : roles){
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
-        return authorities;
+        return null;
     }
 
     @Override

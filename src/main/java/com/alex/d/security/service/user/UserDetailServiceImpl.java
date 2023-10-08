@@ -37,7 +37,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 //                .build();
 //    }
 
-    public UserModel registerUser(String name, String login, String password, Set<RoleModel> role) {
+    public UserModel registerUser(String name, String login, String password) {
         if (name != null && !name.isEmpty() && login != null && !login.isEmpty() && password != null && !password.isEmpty()) {
             if (userRepository.findByLogin(login).isPresent()) {
                 System.out.println("This login is in use");
@@ -48,7 +48,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
             userModel.setName(name);
             userModel.setLogin(login);
             userModel.setPassword(password);
-            userModel.setRole(role);
+
 
 
 

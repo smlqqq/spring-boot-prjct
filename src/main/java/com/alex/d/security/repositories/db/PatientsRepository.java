@@ -1,6 +1,6 @@
-package com.alex.d.security.repositories;
+package com.alex.d.security.repositories.db;
 
-import com.alex.d.security.models.PatientsModel;
+import com.alex.d.security.models.db.PatientsModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,7 @@
 package com.alex.d.security.service.db;
 
-import com.alex.d.security.models.PatientsModel;
-import com.alex.d.security.repositories.PatientsRepository;
+import com.alex.d.security.models.db.PatientsModel;
+import com.alex.d.security.repositories.db.PatientsRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -16,12 +16,14 @@ public class PatientService {
 
     public PatientsModel getDataById(Long id) {
         Optional<PatientsModel> patientOptional = patientsRepository.findById(id);
+        System.out.println("Get by id " + patientOptional);
         return patientOptional.orElse(null);
     }
 
-    public void saveData(PatientsModel patientsModel) {
+    public PatientsModel saveData(PatientsModel patientsModel) {
         Optional<PatientsModel> patientOptional = Optional.of(patientsRepository.save(patientsModel));
         System.out.println("Diagnosis updated: " + patientOptional);
 
+        return patientsModel;
     }
 }

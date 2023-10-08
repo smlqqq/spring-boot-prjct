@@ -27,9 +27,6 @@ public class UserModel {
     @Column(name = "password")
     private String password;
 
-//    @Column(name = "role")
-//    private String role;
-
 
 //     @Getter
 //     @ManyToMany
@@ -47,35 +44,6 @@ public class UserModel {
             inverseJoinColumns = @JoinColumn(
                     name = "role_id", referencedColumnName = "id"))
     private Set<RoleModel> role = new HashSet<>();
-
-//    @Getter
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(name = "user_role",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    private Set<RoleModel> role;
-
-
-
-
-//    @ManyToMany(fetch = FetchType.LAZY)
-//    @JoinTable(
-//            name = "user_role",
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id")
-//    )
-//    private Set<RoleModel> role;
-
-//    @Override
-//    public Collection<GrantedAuthority> getAuthorities() {
-//        Set<GrantedAuthority> authorities = new HashSet<>();
-//        for (RoleModel roleModel : role) {
-//            authorities.add(new SimpleGrantedAuthority(roleModel.getName()));
-//        }
-//        return authorities;
-//    }
-
-
 
 
 }

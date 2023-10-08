@@ -1,9 +1,9 @@
 //package com.alex.d.security.service;
 //
-//import com.alex.d.security.models.RoleModel;
-//import com.alex.d.security.models.UserModel;
+//import com.alex.d.security.models.user.RoleModel;
+//import com.alex.d.security.models.user.UserModel;
 //
-//import com.alex.d.security.repositories.UserRepository;
+//import com.alex.d.security.repositories.user.UserRepository;
 //import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 //import org.springframework.stereotype.Service;
 //

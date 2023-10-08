@@ -1,14 +1,12 @@
-package com.alex.d.security.controller;
+package com.alex.d.security.controller.data;
 
-import com.alex.d.security.models.UserModel;
-import com.alex.d.security.service.PatientService;
+import com.alex.d.security.service.db.PatientService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.ui.Model;
-import com.alex.d.security.models.PatientsModel;
-import com.alex.d.security.repositories.PatientsRepository;
+import com.alex.d.security.models.db.PatientsModel;
+import com.alex.d.security.repositories.db.PatientsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

@@ -1,7 +1,7 @@
 //package com.alex.d.security.config;
 //
 ///*
-//import com.alex.d.security.repositories.PatientsRepository;
+//import com.alex.d.security.repositories.db.PatientsRepository;
 //import com.alex.d.security.repositories.user.UserRepository;
 //import com.alex.d.security.service.UserDetailServiceImpl;
 //import org.springframework.context.annotation.Bean;
