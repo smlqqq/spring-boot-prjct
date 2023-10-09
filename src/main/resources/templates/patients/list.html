@@ -16,6 +16,14 @@
 ╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝
         </pre>
     <h1>Welcome <span th:text="${session.userName}"></span></h1>
+    <!-- Добавьте следующий блок в вашем шаблоне для отображения ролей -->
+    <div th:if="${userRoles}">
+        <p>Role:</p>
+        <ul>
+            <li th:each="role : ${userRoles}" th:text="${role}"></li>
+        </ul>
+    </div>
+
     <table>
         <thead>
         <tr>

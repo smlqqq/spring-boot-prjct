@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus.yml
+    ports:
+      - "9090:9090"
+    command:
+      - --config.file=/etc/prometheus.yml
+
+  spring-boot-prjct:
+    image: your-spring-boot-image:latest
+    ports:
+      - "8081:8081"
