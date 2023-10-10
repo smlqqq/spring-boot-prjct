@@ -155,8 +155,8 @@ public class SecurityConfig {
                                 .requestMatchers("/", "/login", "/register", "/logout").permitAll()
 //                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
                                 .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
-                        .anyRequest().authenticated()
-//                                .anyRequest().permitAll()
+//                        .anyRequest().authenticated()
+                                .anyRequest().permitAll()
                 )
                 .formLogin(
                         form -> form
