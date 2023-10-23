@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome</title>
+    <title>Error</title>
 </head>
 <body>
 
@@ -23,19 +23,17 @@
         height: 100vh;
     }
 
-    .welcome {
+    h1 {
         background-color: #FFF;
         padding: 20px;
         border-radius: 5px;
         text-align: center;
-    }
-
-    .app-title {
         color: #777;
     }
 
     .buttons {
         margin-top: 20px;
+        text-align: center;
     }
 
     .btn {
@@ -50,10 +48,8 @@
         border-radius: 3px;
         box-shadow: none;
         transition: 0.25s;
-        display: block;
-        width: 250px;
-        margin: 0 auto;
-        margin-bottom: 10px;
+        display: inline-block;
+        margin-right: 10px;
     }
 
     .btn:hover {
@@ -61,18 +57,17 @@
     }
 </style>
 
-<div class="welcome">
-    <div class="app-title">
-        <h1>Welcome</h1>
-    </div>
-    <div class="buttons">
-        <a class="btn" href="/login">Login</a>
-        <a class="btn" href="/register">Sign in</a>
-    </div>
+<h1>
+    Incorrect data.
+</h1>
+<div class="buttons">
+    <a class="btn" href="/login">Login</a>
+    <a class="btn" href="/register">Sign in</a>
 </div>
 </body>
 </html>
 -->
+
 
 
 <!DOCTYPE html>
@@ -80,22 +75,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Error</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="terminal">
-    <pre class="welcome">
+    <pre class="error">
 
-░██╗░░░░░░░██╗███████╗██╗░░░░░░█████╗░░█████╗░███╗░░░███╗███████╗
-░██║░░██╗░░██║██╔════╝██║░░░░░██╔══██╗██╔══██╗████╗░████║██╔════╝
-░╚██╗████╗██╔╝█████╗░░██║░░░░░██║░░╚═╝██║░░██║██╔████╔██║█████╗░░
-░░████╔═████║░██╔══╝░░██║░░░░░██║░░██╗██║░░██║██║╚██╔╝██║██╔══╝░░
-░░╚██╔╝░╚██╔╝░███████╗███████╗╚█████╔╝╚█████╔╝██║░╚═╝░██║███████╗
-░░░╚═╝░░░╚═╝░░╚══════╝╚══════╝░╚════╝░░╚════╝░╚═╝░░░░░╚═╝╚══════╝
+
+
+███████╗██████╗░██████╗░░█████╗░██████╗░
+██╔════╝██╔══██╗██╔══██╗██╔══██╗██╔══██╗
+█████╗░░██████╔╝██████╔╝██║░░██║██████╔╝
+██╔══╝░░██╔══██╗██╔══██╗██║░░██║██╔══██╗
+███████╗██║░░██║██║░░██║╚█████╔╝██║░░██║
+╚══════╝╚═╝░░╚═╝╚═╝░░╚═╝░╚════╝░╚═╝░░╚═╝
+
     </pre>
-    <p>Please choose an option:</p>
-    <a class="button" href="/login">Login</a>
-    <a class="button" href="/register">Register</a>
+    <p class="error-message">Incorrect data.</p>
+    <div class="buttons">
+        <a class="button" href="/login">Login</a>
+        <a class="button" href="/register">Sign in</a>
+    </div>
 </div>
 </body>
 </html>
@@ -120,10 +121,20 @@
         text-align: center;
     }
 
-    .welcome {
+    .error {
         color: #c5c8c6;
         font-size: 18px;
         margin-bottom: 20px;
+    }
+
+    .error-message {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
     }
 
     .button {
@@ -143,7 +154,5 @@
         background-color: #1d1f21;
         color: #c5c8c6;
     }
-
-
 
 </style>

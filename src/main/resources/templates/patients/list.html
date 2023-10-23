@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient List</title>
+    <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
+</head>
+<body>
+<div class="terminal">
+        <pre class="title">
+██████╗░░█████╗░████████╗░█████╗░
+██╔══██╗██╔══██╗╚══██╔══╝██╔══██╗
+██║░░██║███████║░░░██║░░░███████║
+██║░░██║██╔══██║░░░██║░░░██╔══██║
+██████╔╝██║░░██║░░░██║░░░██║░░██║
+╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝
+        </pre>
+    <h1>Welcome <span th:text="${session.userName}"></span></h1>
+    <!-- Добавьте следующий блок в вашем шаблоне для отображения ролей -->
+    <div th:if="${userRoles}">
+        <p>Role:</p>
+        <ul>
+            <li th:each="role : ${userRoles}" th:text="${role}"></li>
+        </ul>
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Diagnosis</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="patient : ${list}">
+            <td th:text="${patient.first_name}"></td>
+            <td th:text="${patient.last_name}"></td>
+            <td th:text="${patient.diagnosis}"></td>
+            <td>
+                <a th:href="@{'/patient/' + ${patient.id}}" class="button">Get details</a>
+                <a th:href="@{'/delete-patient/' + ${patient.id}}"
+                   onclick="return confirm('Are you sure you want to delete this patient?');" class="button">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="button-container">
+        <a class="button" href="/registration">Add</a>
+        <a class="button" href="/logout">Logout</a>
+    </div>
+
+    <div class="pagination">
+        <ul>
+            <li th:if="${list.hasPrevious()}">
+                <a th:href="@{/list(page=${list.previousPageable.pageNumber}, size=${list.size}, sort=${param.sort})}">&laquo;</a>
+            </li>
+            <!-- Проверьте, что patientsList не равен null перед его использованием -->
+            <li th:if="${list != null}">
+                <!-- Добавляем двойную стрелку для первой страницы -->
+                <span th:if="${list.number > 1}">
+                <a th:href="@{/list(page=0, size=${list.size}, sort=${param.sort})}"
+                   th:text="1"></a>
+
+                    <span th:if="${list.number > 2}">
+                <span>...</span>
+
+            </span>
+            </span>
+                <!-- Отображаем страницу перед текущей, если она существует -->
+                <span th:if="${list.number > 0}">
+                <a th:href="@{/list(page=${list.number - 1}, size=${list.size}, sort=${param.sort})}"
+                   th:text="${list.number}"></a>
+            </span>
+                <!-- Отображаем текущую страницу -->
+                <span><b th:text="${list.number + 1}"></b></span>
+                <!-- Отображаем страницу после текущей, если она существует -->
+                <span th:if="${list.number + 1 < list.totalPages}">
+                <a th:href="@{/list(page=${list.number + 1}, size=${list.size}, sort=${param.sort})}"
+                   th:text="${list.number + 2}"></a>
+
+                     <span th:if="${list.number + 2 < list.totalPages}">
+                <span>...</span>
+
+            </span>
+            </span>
+                <!-- Добавляем двойную стрелку для последней страницы -->
+                <span th:if="${list.number + 2 < list.totalPages}">
+                <a th:href="@{/list(page=${list.totalPages - 1}, size=${list.size}, sort=${param.sort})}"
+                   th:text="${list.totalPages}"></a>
+            </span>
+                <!-- Отображаем стрелку "вперед", если есть следующая страница -->
+            <li th:if="${list.hasNext()}">
+                <a th:href="@{/list(page=${list.nextPageable.pageNumber}, size=${list.size}, sort=${param.sort})}">&raquo;</a>
+            </li>
+            </li>
+        </ul>
+    </div>
+
+
+</div>
+</body>
+</html>
+
+<style>
+    body {
+        font-family: 'Courier New', Courier, monospace;
+        background-color: #1d1f21;
+        color: #c5c8c6;
+        /*display: flex;*/
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        /*margin: 225px;*/
+        margin-top: 5px;
+        margin-left: 600px;
+        margin-right: -600px;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+        position: fixed;
+    }
+
+    .terminal {
+        background-color: #1d1f21;
+        border: 2px solid #c5c8c6;
+        border-radius: 5px;
+        padding: 10px;
+        text-align: center;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .title {
+        color: #c5c8c6;
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+
+    table th {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #c5c8c6;
+        background-color: #1d1f21;
+        color: #c5c8c6;
+    }
+
+    table td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #c5c8c6;
+        background-color: #1d1f21;
+        color: #c5c8c6;
+    }
+
+    .button-container {
+        text-align: left;
+    }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #c5c8c6;
+        color: #1d1f21;
+        text-decoration: none;
+        border: 2px solid #c5c8c6;
+        border-radius: 5px;
+        font-size: 16px;
+        margin: 10px;
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
+    }
+
+    .button:hover {
+        background-color: #1d1f21;
+        color: #c5c8c6;
+    }
+
+
+    .pagination {
+        margin-top: 20px;
+    }
+
+    .pagination ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+    }
+
+    .pagination li {
+        display: inline;
+        margin: 0 5px;
+
+    }
+
+    .pagination a {
+        text-decoration: none;
+        background-color: #c5c8c6;
+        color: #1d1f21;
+        padding: 5px 10px;
+        border: 2px solid #c5c8c6;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
+    }
+
+    .pagination a:hover {
+        background-color: #1d1f21;
+        color: #c5c8c6;
+    }
+
+
+    .pagination b {
+        text-decoration: none;
+        background-color: #1d1f21;
+        color: #c5c8c6;
+        padding: 5px 10px;
+        border: 2px solid #c5c8c6;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s, color 0.3s;
+        cursor: pointer;
+    }
+
+</style>
+

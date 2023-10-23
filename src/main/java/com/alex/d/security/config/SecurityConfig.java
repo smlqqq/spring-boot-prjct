@@ -1,45 +1,176 @@
-//package com.alex.d.security.config;
+package com.alex.d.security.config;
+
+/*
+import com.alex.d.security.repositories.db.PatientsRepository;
+import com.alex.d.security.repositories.user.UserRepository;
+import com.alex.d.security.service.UserDetailServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+@EnableWebSecurity
+@Configuration
+public class SecurityConfig {
+
+    private final UserRepository userRepository;
+    private final PatientsRepository patientsRepository;
+
+    public SecurityConfig(UserRepository userRepository, PatientsRepository patientsRepository) {
+        this.userRepository = userRepository;
+        this.patientsRepository = patientsRepository;
+    }
+
+    @Bean
+    public UserDetailsService userDetailsService() {
+        return new UserDetailServiceImpl(userRepository);
+    }
+
+
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+        return http.getSharedObject(AuthenticationManagerBuilder.class)
+                .authenticationProvider(authenticationProvider())
+                .build();
+    }
+
+    @Bean
+    public DaoAuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        authProvider.setUserDetailsService(userDetailsService());
+        authProvider.setPasswordEncoder(passwordEncoder());
+        return authProvider;
+    }
+
+
+}
+*/
+
+
+import com.alex.d.security.service.user.UserDetailServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+
+@EnableWebSecurity
+@Configuration
+public class SecurityConfig {
+
 //
-//import com.alex.d.security.service.UserDetailServiceImpl;
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//
-//@Configuration
-//@EnableWebSecurity
-//public class SecurityConfig  {
-//
-//    private final UserDetailServiceImpl userDetailService;
-//    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-//
-//    public SecurityConfig(UserDetailServiceImpl userDetailsService, BCryptPasswordEncoder bCryptPasswordEncoder) {
-//        this.userDetailService = userDetailsService;
-//        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+//    public SecurityConfig(UserRepository userRepository) {
+//        this.userRepository = userRepository;
 //    }
 //
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
+//    @Bean
+//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
+//        return authenticationConfiguration.getAuthenticationManager();
+//    }
+//
+//    @Bean
+//    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
+//        return http.getSharedObject(AuthenticationManagerBuilder.class)
+//                .authenticationProvider(authenticationProvider())
+//                .build();
+//    }
+//
+//    private final UserRepository userRepository;
+//
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        return new UserDetailServiceImpl(userRepository);
+//    }
+//
+//
+//    @Bean
+//    public BCryptPasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
+//
+//    @Bean
+//    public DaoAuthenticationProvider authenticationProvider() {
+//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+//        authProvider.setUserDetailsService(userDetailsService());
+//        authProvider.setPasswordEncoder(passwordEncoder());
+//        return authProvider;
+//    }
+
+//    @Bean
+//    public SecurityFilterChain filterSecurity(HttpSecurity http) throws Exception {
+//
 //        http
-//            .authorizeRequests()
-//                .antMatchers("/register", "/login").permitAll() // Открытые страницы
-//                .anyRequest().authenticated() // Другие страницы требуют аутентификации
-//                .and()
-//            .formLogin()
-//                .loginPage("/login")
-//                .permitAll()
-//                .and()
-//            .logout()
-//                .logoutUrl("/logout")
-//                .permitAll();
+//                .csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests((authorize) -> authorize
+//                        .requestMatchers("/admin_dash").hasRole("ADMIN")
+//                        .requestMatchers("/user_dash").hasRole("USER")
+//                        .requestMatchers("/", "/login", "/register", "/logout").permitAll()
+////                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
+//                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
+//                        .anyRequest().authenticated()
+//                )
+//                .formLogin(
+//                        form -> form
+//                                .loginPage("/login")
+//                                .loginProcessingUrl("/login")
+//                                .defaultSuccessUrl("/")
+//                                .permitAll()
+//                )
+//                .logout(
+//                        logout -> logout
+//                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+//                                .logoutSuccessUrl("/")
+//                                .permitAll()
+//                );
+//        return http.build();
 //    }
-//
-//    @Override
-//    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-//        auth.userDetailsService(userDetailService).passwordEncoder(bCryptPasswordEncoder);
-//    }
-//
-//
-//}
+
+
+
+
+    @Bean
+    public SecurityFilterChain filterSecurity(HttpSecurity http) throws Exception {
+
+        http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests((authorize) -> authorize
+                                .requestMatchers("/admin_dash").hasRole("ADMIN")
+                                .requestMatchers("/user_dash").hasRole("USER")
+                                .requestMatchers("/", "/login", "/register", "/logout").permitAll()
+//                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
+                                .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
+//                        .anyRequest().authenticated()
+                                .anyRequest().permitAll()
+                )
+                .formLogin(
+                        form -> form
+                                .loginPage("/login")
+                                .loginProcessingUrl("/login")
+                                .defaultSuccessUrl("/")
+                                .permitAll()
+                )
+                .logout(
+                        logout -> logout
+                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                                .logoutSuccessUrl("/")
+                                .permitAll()
+                );
+        return http.build();
+    }
+}
