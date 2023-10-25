@@ -1,6 +1,7 @@
 package com.alex.d.security.service.user;
 
 
+import com.alex.d.security.models.user.MyUserDetails;
 import com.alex.d.security.models.user.RoleModel;
 import com.alex.d.security.models.user.UserModel;
 import com.alex.d.security.repositories.user.UserRepository;
@@ -82,16 +83,28 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
 
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        UserModel user = userRepository.findByLogin(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+//        UserModel user = userRepository.findByLogin(username)
+//                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
+//
+//        return new org.springframework.security.core.userdetails.User(
+//                user.getLogin(),
+//                user.getPassword(),
+//                getAuthorities(user.getRole())
+//        );
+//    }
 
-        return new org.springframework.security.core.userdetails.User(
-                user.getLogin(),
-                user.getPassword(),
-                getAuthorities(user.getRole())
-        );
+    @Override
+    public UserDetails loadUserByUsername(String login)
+            throws UsernameNotFoundException {
+        UserModel user = userRepository.getUserByLogin(login);
+
+        if (user == null) {
+            throw new UsernameNotFoundException("Could not find user");
+        }
+
+        return new MyUserDetails(user);
     }
 
     private Collection<? extends GrantedAuthority> getAuthorities(Set<RoleModel> roles) {

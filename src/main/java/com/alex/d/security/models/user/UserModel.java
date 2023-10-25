@@ -6,6 +6,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serializable;
 import java.util.*;
 
 
@@ -15,7 +16,7 @@ import java.util.*;
 @Entity
 @Table(name = "users")
 /*@Table(name = "users", schema = "user")*/
-public class UserModel implements UserDetails {
+public class UserModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -41,48 +42,48 @@ public class UserModel implements UserDetails {
                     name = "role_id", referencedColumnName = "id"))
     private Set<RoleModel> role = new HashSet<>();
 
-    @Override
-    public String getUsername() {
-        return login;
-    }
+//    @Override
+//    public String getUsername() {
+//        return login;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonExpired() {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean isAccountNonLocked() {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean isCredentialsNonExpired() {
+//        return false;
+//    }
+//
+//    @Override
+//    public boolean isEnabled() {
+//        return false;
+//    }
+//
+//
+//    @Override
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
+//        Set<RoleModel>roles = getRole();
+//        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+//        for(RoleModel role : roles){
+//            authorities.add(new SimpleGrantedAuthority(role.getName()));
+//        }
+//        return authorities;
+//    }
 
-    @Override
-    public boolean isAccountNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isAccountNonLocked() {
-        return false;
-    }
-
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return false;
-    }
 
 
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        Set<RoleModel>roles = getRole();
-        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
-        for(RoleModel role : roles){
-            authorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
-        return authorities;
-    }
-
-
-
-    @Override
-    public String getPassword() {
-        return password;
-    }
+//    @Override
+//    public String getPassword() {
+//        return password;
+//    }
 
 
 //    @ManyToMany(fetch = FetchType.EAGER)

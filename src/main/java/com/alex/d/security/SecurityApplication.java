@@ -7,10 +7,14 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.boot.autoconfigure.web.servlet.WebMvcAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
 import org.springframework.web.servlet.handler.MappedInterceptor;
+import org.thymeleaf.spring6.context.webmvc.SpringWebMvcThymeleafRequestContext;
 
 @SpringBootApplication(exclude = {SecurityAutoConfiguration.class})
 public class SecurityApplication {
@@ -26,10 +30,10 @@ private final static Logger LOGGER = LogManager.getLogger(SecurityApplication.cl
 
 
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+//    @Bean
+//    public BCryptPasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
+//    }
 
     @Bean
     MeterRegistryCustomizer<MeterRegistry> metricsCommonTags() {

@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Patient Details</title>
+  <link href="../../static/css/single_view.css" rel="stylesheet">
+  <script src="../../static/js/single_view.js"></script>
+
 </head>
 <body>
 <div class="terminal">
@@ -25,105 +28,20 @@
     <p>Diagnosis: <input type="text" th:value="${patient.diagnosis}" name="diagnosis"></p>
     <button type="submit" onclick="confirm('Data successfully updated.');">Update Diagnosis</button>
   </form>
+<!--  <script src="js/single_view.js"></script>-->
 
-  <script>
-    document.getElementById('updateDiagnosisForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const formData = new FormData(this);
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', this.action, true);
-      xhr.send(formData);
-    });
-  </script>
+<!--  <script>-->
+<!--    document.getElementById('updateDiagnosisForm').addEventListener('submit', function(event) {-->
+<!--      event.preventDefault();-->
+<!--      const formData = new FormData(this);-->
+<!--      const xhr = new XMLHttpRequest();-->
+<!--      xhr.open('POST', this.action, true);-->
+<!--      xhr.send(formData);-->
+<!--    });-->
+<!--  </script>-->
 
   <a href="/list" >Back to Patient List</a>
 </div>
 </body>
 </html>
 
-<style>
-  body {
-    background-color: #1d1f21;
-    font-family: 'Courier New', Courier, monospace;
-    color: #c5c8c6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-
-  .terminal {
-    background-color: #1d1f21;
-    border: 2px solid #c5c8c6;
-    border-radius: 5px;
-    padding: 20px;
-    text-align: center;
-  }
-
-
-  .title {
-    color: #c5c8c6;
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-
-  form {
-    color: #c5c8c6;
-  }
-
-  form p {
-    color: #c5c8c6;
-  }
-
-  input[type="text"] {
-    background-color: #1d1f21;
-    border: 2px solid #c5c8c6;
-    color: #c5c8c6;
-    padding: 5px;
-    width: 150px;
-    height: 30px;
-    overflow: auto; /* Скрывать содержимое, которое не помещается */
-    white-space:normal  /* Запрет на перенос текста на новую строку */
-
-  }
-
-  button {
-    font-family: 'Courier New', Courier, monospace;
-    padding: 10px 40px;
-    background-color: #c5c8c6;
-    color: #1d1f21;
-    text-decoration: none;
-    border: 2px solid #c5c8c6;
-    border-radius: 5px;
-    font-size: 16px;
-    margin: 10px;
-    transition: background-color 0.3s, color 0.3s;
-    cursor: pointer;
-  }
-
-  button:hover {
-    background-color: #1d1f21;
-    color: #c5c8c6;
-  }
-
-  a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #c5c8c6;
-    color: #1d1f21;
-    text-decoration: none;
-    border: 2px solid #c5c8c6;
-    border-radius: 5px;
-    font-size: 16px;
-    margin: 10px;
-    transition: background-color 0.3s, color 0.3s;
-    cursor: pointer;
-  }
-
-  a:hover {
-    background-color: #1d1f21;
-    color: #c5c8c6;
-  }
-
-</style>

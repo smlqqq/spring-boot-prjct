@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--    <link href="../../static/css/login.css" type="text/css" rel="stylesheet">-->
+    <link rel="stylesheet" type="text/css" href="../../static/css/login.css" th:href="@{../../static/css/login.css}"/>
     <title>Login</title>
 </head>
 <body>
@@ -29,7 +31,7 @@
 </html>
 
 
-<!--<script>
+<script>
     var animatedText = document.getElementById('animatedText');
     var textArray = [
         'npm install',
@@ -69,80 +71,80 @@
     }
 
     startAnimation(); // начать анимацию
-</script>-->
+</script>
 
 
 
-<style>
+<!--<style>-->
 
 
-    body {
-        font-family: 'Courier New', Courier, monospace;
-        background-color: #1d1f21;
-        color: #c5c8c6;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-    }
+<!--    body {-->
+<!--        font-family: 'Courier New', Courier, monospace;-->
+<!--        background-color: #1d1f21;-->
+<!--        color: #c5c8c6;-->
+<!--        display: flex;-->
+<!--        justify-content: center;-->
+<!--        align-items: center;-->
+<!--        height: 100vh;-->
+<!--        margin: 0;-->
+<!--    }-->
 
-    .terminal {
-        background-color: #1d1f21;
-        border: 2px solid #c5c8c6;
-        border-radius: 5px;
-        padding: 20px;
-        text-align: center;
-    }
+<!--    .terminal {-->
+<!--        background-color: #1d1f21;-->
+<!--        border: 2px solid #c5c8c6;-->
+<!--        border-radius: 5px;-->
+<!--        padding: 20px;-->
+<!--        text-align: center;-->
+<!--    }-->
 
-    .login {
-        color: #c5c8c6;
-        font-size: 18px;
-        margin-bottom: 20px;
-    }
+<!--    .login {-->
+<!--        color: #c5c8c6;-->
+<!--        font-size: 18px;-->
+<!--        margin-bottom: 20px;-->
+<!--    }-->
 
-    .form {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+<!--    .form {-->
+<!--        display: flex;-->
+<!--        flex-direction: column;-->
+<!--        align-items: center;-->
+<!--    }-->
 
-    input {
-        margin: 10px 0;
-        padding: 10px;
-        border: 1px solid #c5c8c6;
-        border-radius: 3px;
-        background-color: #1d1f21;
-        color: #c5c8c6;
-        font-family: 'Courier New', Courier, monospace;
-    }
+<!--    input {-->
+<!--        margin: 10px 0;-->
+<!--        padding: 10px;-->
+<!--        border: 1px solid #c5c8c6;-->
+<!--        border-radius: 3px;-->
+<!--        background-color: #1d1f21;-->
+<!--        color: #c5c8c6;-->
+<!--        font-family: 'Courier New', Courier, monospace;-->
+<!--    }-->
 
-    .button {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: #c5c8c6;
-        color: #1d1f21;
-        text-decoration: none;
-        border: 2px solid #c5c8c6;
-        border-radius: 5px;
-        font-size: 16px;
-        margin: 10px;
-        transition: background-color 0.3s, color 0.3s;
-    }
+<!--    .button {-->
+<!--        display: inline-block;-->
+<!--        padding: 10px 20px;-->
+<!--        background-color: #c5c8c6;-->
+<!--        color: #1d1f21;-->
+<!--        text-decoration: none;-->
+<!--        border: 2px solid #c5c8c6;-->
+<!--        border-radius: 5px;-->
+<!--        font-size: 16px;-->
+<!--        margin: 10px;-->
+<!--        transition: background-color 0.3s, color 0.3s;-->
+<!--    }-->
 
-    .button:hover {
-        background-color: #1d1f21;
-        color: #c5c8c6;
-    }
+<!--    .button:hover {-->
+<!--        background-color: #1d1f21;-->
+<!--        color: #c5c8c6;-->
+<!--    }-->
 
-    .signup-link {
-        font-size: 14px;
-        margin-top: 10px;
-    }
+<!--    .signup-link {-->
+<!--        font-size: 14px;-->
+<!--        margin-top: 10px;-->
+<!--    }-->
 
-    .signup-link a {
-        color: #c5c8c6;
-        text-decoration: none;
-    }
+<!--    .signup-link a {-->
+<!--        color: #c5c8c6;-->
+<!--        text-decoration: none;-->
+<!--    }-->
 
-</style>
+<!--</style>-->

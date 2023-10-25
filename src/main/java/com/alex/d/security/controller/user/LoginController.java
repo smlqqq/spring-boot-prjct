@@ -30,11 +30,11 @@ public final class LoginController {
     }
 
 
-   /* @GetMapping("/login")
-    public String getLoginPage(Model model) {
-        model.addAttribute("loginRequest", new UserModel());
-        return "user/login";
-    }*/
+//    @GetMapping("/login")
+//    public String getLoginPage(Model model) {
+//        model.addAttribute("loginRequest", new UserModel());
+//        return "user/login";
+//    }
 
 //    @PostMapping("/login")
 //    public String login(@ModelAttribute UserModel userModel, HttpSession session) {
@@ -48,22 +48,22 @@ public final class LoginController {
 //        }
 //    }
 
-/*    @PostMapping("/login")
-    public String login(@ModelAttribute UserModel userModel, HttpSession session) {
-        System.out.println("Login request " + userModel);
-        // Load user by username (login)
-        UserDetails userDetails = userDetailService.loadUserByUsername(userModel.getLogin());
-        if (userDetails != null) {
-            // Check hashed password
-            if (passwordEncoder.matches(userModel.getPassword(), userDetails.getPassword())) {
-                // If authenthicatin succes, use userName in session
-                session.setAttribute("userName", userDetails.getUsername());
-                return "redirect:/list";
-            }
-        }
-        // else
-        return "err/error";
-    }*/
+//    @PostMapping("/login")
+//    public String login(@ModelAttribute UserModel userModel, HttpSession session) {
+//        System.out.println("Login request " + userModel);
+//        // Load user by username (login)
+//        UserDetails userDetails = userDetailService.loadUserByUsername(userModel.getLogin());
+//        if (userDetails != null) {
+//            // Check hashed password
+//            if (passwordEncoder.matches(userModel.getPassword(), userDetails.getPassword())) {
+//                // If authenthicatin succes, use userName in session
+//                session.setAttribute("userName", userDetails.getUsername());
+//                return "redirect:/list";
+//            }
+//        }
+//        // else
+//        return "err/error";
+//    }
 
     @PostMapping("/login")
     public String login(@ModelAttribute UserModel userModel, HttpSession session) {

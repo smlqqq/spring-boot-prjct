@@ -1,0 +1,83 @@
+body {
+    background-color: #1d1f21;
+    font-family: 'Courier New', Courier, monospace;
+    color: #c5c8c6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.terminal {
+    background-color: #1d1f21;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+}
+
+
+.title {
+    color: #c5c8c6;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+form {
+    color: #c5c8c6;
+}
+
+form p {
+    color: #c5c8c6;
+}
+
+input[type="text"] {
+    background-color: #1d1f21;
+    border: 2px solid #c5c8c6;
+    color: #c5c8c6;
+    padding: 5px;
+    width: 150px;
+    height: 30px;
+    overflow: auto; /* Скрывать содержимое, которое не помещается */
+    white-space:normal  /* Запрет на перенос текста на новую строку */
+
+}
+
+button {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px 40px;
+    background-color: #c5c8c6;
+    color: #1d1f21;
+    text-decoration: none;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1d1f21;
+    color: #c5c8c6;
+}
+
+a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c5c8c6;
+    color: #1d1f21;
+    text-decoration: none;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+a:hover {
+    background-color: #1d1f21;
+    color: #c5c8c6;
+}

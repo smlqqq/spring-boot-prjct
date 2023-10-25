@@ -1,0 +1,107 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #1d1f21;
+    color: #c5c8c6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.terminal {
+    background-color: #1d1f21;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+}
+
+.title {
+    color: #c5c8c6;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    font-size: 18px;
+}
+
+input[type="text"] {
+    background-color: #1d1f21;
+    color: #c5c8c6;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+input[type="text#diagnosis"] {
+    width: 600px;
+    height: 200px;
+}
+
+input[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c5c8c6;
+    color: #1d1f21;
+    text-decoration: none;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #1d1f21;
+    color: #c5c8c6;
+}
+
+.main {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c5c8c6;
+    color: #1d1f21;
+    text-decoration: none;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+.main:hover {
+    background-color: #1d1f21;
+    color: #c5c8c6;
+}
+
+button {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px 25px;
+    background-color: #c5c8c6;
+    color: #1d1f21;
+    text-decoration: none;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #1d1f21;
+    color: #c5c8c6;
+}

@@ -28,15 +28,21 @@
         </dependency>
 
 
+        <!-- https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring6 -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <groupId>org.thymeleaf</groupId>
+            <artifactId>thymeleaf-spring6</artifactId>
+            <version>3.1.2.RELEASE</version>
         </dependency>
 
+
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+            <version>3.1.5</version>
         </dependency>
+
 
         <dependency>
             <groupId>javax.persistence</groupId>
@@ -64,12 +70,12 @@
         </dependency>
 
 
-        <!-- Зависимость для Spring MVC -->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>6.0.7</version>
-        </dependency>
+<!--        &lt;!&ndash; Зависимость для Spring MVC &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>org.springframework</groupId>-->
+<!--            <artifactId>spring-webmvc</artifactId>-->
+<!--            <version>6.0.7</version>-->
+<!--        </dependency>-->
 
         <!-- Зависимость для Spring Test -->
         <dependency>

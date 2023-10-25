@@ -4,6 +4,7 @@ import com.alex.d.security.service.db.PatientService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.ui.Model;
 import com.alex.d.security.models.db.PatientsModel;
 import com.alex.d.security.repositories.db.PatientsRepository;
