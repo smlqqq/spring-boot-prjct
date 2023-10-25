@@ -1,3 +1,4 @@
+/*
 package com.alex.d.security.controller.data;
 
 import com.alex.d.security.service.db.PatientService;
@@ -46,14 +47,16 @@ public final class PatientsController {
         return "redirect:/list";
     }
 
- /*   @GetMapping("/patientsList")
+ */
+/*   @GetMapping("/patientsList")
     public String listPatients(Model model) {
 //        List<PatientsModel> patients = patientsRepository.findAll();
         List<PatientsModel> patients = patientsRepository.findAll(Sort.by(Sort.Direction.ASC, "id"));
         model.addAttribute("patientsList", patients);
         return "patients/patientsList";
     }
-*/
+*//*
+
 
     @GetMapping("/delete-patient/{id}")
     public String deletePatient(@PathVariable Long id) {
@@ -87,7 +90,9 @@ public final class PatientsController {
         return "redirect:/patient/" + id;
     }
 
-    /* Pagination output all data and sort by id */
+    */
+/* Pagination output all data and sort by id *//*
+
     @GetMapping("/list")
     public String getAllData(
             @RequestParam(defaultValue = "0") Integer page,
@@ -113,3 +118,4 @@ public final class PatientsController {
 //    }
 }
 
+*/

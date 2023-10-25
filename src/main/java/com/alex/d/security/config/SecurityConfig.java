@@ -158,7 +158,7 @@ public class SecurityConfig {
                                 .requestMatchers("/user_dash").hasRole("USER")
                                 .requestMatchers("/", "/login", "/register", "/logout").permitAll()
 //                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
-                                .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
+                                .requestMatchers("/list").permitAll()
 //                        .anyRequest().authenticated()
                                 .anyRequest().permitAll()
                 )
