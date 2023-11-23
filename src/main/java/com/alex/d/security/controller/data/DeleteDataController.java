@@ -5,10 +5,12 @@ import com.alex.d.security.repositories.db.PatientsRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/api/data")
 public class DeleteDataController {
 
    private final PatientsRepository patientsRepository;

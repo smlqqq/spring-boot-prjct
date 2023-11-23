@@ -1,0 +1,147 @@
+/* Common styles */
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #1d1f21;
+    color: #c5c8c6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.terminal {
+    background-color: #1d1f21;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    padding: 20px;
+    text-align: center;
+}
+
+.button,
+a,
+button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #c5c8c6;
+    color: #1d1f21;
+    text-decoration: none;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 10px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+.button:hover,
+a:hover,
+button:hover {
+    background-color: #1d1f21;
+    color: #c5c8c6;
+}
+
+/* Specific styles */
+
+/* .error, .error-message (assumed from different parts) */
+
+.error {
+    color: #c5c8c6;
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.error-message {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* .buttons, .button-container (assumed from different parts) */
+
+.buttons,
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+/* .pagination (assumed from different parts) */
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination li {
+    display: inline;
+    margin: 0 5px;
+}
+
+.pagination a,
+.pagination b {
+    text-decoration: none;
+    padding: 5px 10px;
+    border: 2px solid #c5c8c6;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+    cursor: pointer;
+}
+
+.pagination a:hover,
+.pagination b:hover {
+    background-color: #1d1f21;
+    color: #c5c8c6;
+}
+
+/* .title (assumed from different parts) */
+
+.title,
+h1 {
+    color: #c5c8c6;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* .form (assumed from different parts) */
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #c5c8c6;
+    border-radius: 3px;
+    background-color: #1d1f21;
+    color: #c5c8c6;
+}
+
+/* .signup-link, .login-link (assumed from different parts) */
+
+.signup-link,
+.login-link {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.signup-link a,
+.login-link a {
+    color: #c5c8c6;
+    text-decoration: none;
+}
+
+/* Additional Specific Styles */
+
+/* Add any additional specific styles here */
+
+/* End of CSS */

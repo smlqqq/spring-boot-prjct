@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/api/data")
 public final class PatientsController {
     //MVC
     //REST
