@@ -23,6 +23,3 @@ mvn clean install
 mvn spring-boot:run
 
 Открыть в браузере адрес http://localhost:8080 и проверить работу приложения.
-
-Авторы
-Этот проект был создан smlqqq, студентом курса по Spring Boot.
