@@ -1,25 +1,45 @@
-# Spring Boot Project
+# Spring Boot Application
 
-Spring Boot Project - это пример веб-приложения, которое использует Spring Boot для создания REST API и взаимодействия с базой данных.
+## О проекте
 
-## Технологии
+Это простое веб-приложение, которое использует Spring Boot, Spring Data JPA, Spring Security, Thymeleaf и PostgreSQL для реализации функционала базы данных о пациентах больницы. Приложение позволяет входить в систему. Приложение также поддерживает роли пользователей (администратор,пользователь) и разграничение доступа к различным страницам и действиям в зависимости от роли.
 
-- Spring Boot
-- Java 17
-- Maven 
+## Стэк Технологии
 
-## Установка и запуск
+- Spring Boot 2.5.6
+- Spring Data JPA
+- Spring Security
+- Thymeleaf
+- PostgreSQL
+- Bootstrap
+- Maven
+- Prometheus
+- Grafana
+- Docker
 
-- Клонировать репозиторий с GitHub:
+## Запуск приложения
 
-```bash
+Для запуска приложения вам понадобится:
+
+- Java 11 или выше
+- PostgreSQL 13 или выше
+- Maven 3.8.3 или выше
+
+Перед запуском приложения вам нужно создать базу данных в PostgreSQL с именем `spring_boot_prjct` и пользователем `postgres` с паролем `postgres`. Вы можете изменить эти настройки в файле `src/main/resources/application.properties`.
+
+Для запуска приложения выполните следующие команды в терминале:
+
+```shell
 git clone https://github.com/smlqqq/spring-boot-prjct.git
 cd spring-boot-prjct
-
-Установить зависимости с помощью Maven:
-mvn clean install
-
-Запустить приложение с помощью Maven:
 mvn spring-boot:run
 
-Открыть в браузере адрес http://localhost:8080 и проверить работу приложения.
+После запуска приложения вы можете открыть его в браузере по адресу: http://localhost:8081/
+
+
+
+
+
+
+
+
