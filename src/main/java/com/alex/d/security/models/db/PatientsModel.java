@@ -28,7 +28,4 @@ public class PatientsModel {
 
     @Column(name = "diagnosis")
     private String diagnosis;
-
-
-
 }

@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Patient Details</title>
   <link href="../../static/css/single_view.css" rel="stylesheet">
-  <script src="../../static/js/single_view.js"></script>
+  <script src="../../static/js/single_view.js" th:href="@{../../static/js/login.js}"></script>
+
 
 </head>
 <body>
@@ -28,18 +29,6 @@
     <p>Diagnosis: <input type="text" th:value="${patient.diagnosis}" name="diagnosis"></p>
     <button type="submit" onclick="confirm('Data successfully updated.');">Update Diagnosis</button>
   </form>
-<!--  <script src="js/single_view.js"></script>-->
-
-<!--  <script>-->
-<!--    document.getElementById('updateDiagnosisForm').addEventListener('submit', function(event) {-->
-<!--      event.preventDefault();-->
-<!--      const formData = new FormData(this);-->
-<!--      const xhr = new XMLHttpRequest();-->
-<!--      xhr.open('POST', this.action, true);-->
-<!--      xhr.send(formData);-->
-<!--    });-->
-<!--  </script>-->
-
   <a href="/list" >Back to Patient List</a>
 </div>
 </body>

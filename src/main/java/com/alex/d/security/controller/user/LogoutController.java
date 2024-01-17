@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 
 @Controller
-@RequestMapping("/api/users")
 public final class LogoutController {
     //MVC
     //REST

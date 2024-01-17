@@ -57,94 +57,27 @@ public class SecurityConfig {
 */
 
 
-import com.alex.d.security.service.user.UserDetailServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractAuthenticationFilterConfigurer;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 @Configuration
+//@EnableMongoRepositories(basePackages = "com.alex.d.security.mongo") // Пакет для репозиториев MongoDB
+@EnableJpaRepositories(basePackages = "com.alex.d.security.repositories") // Пакет для репозиториев JPA
 public class SecurityConfig {
-
-//
-//    public SecurityConfig(UserRepository userRepository) {
-//        this.userRepository = userRepository;
-//    }
-//
-//    @Bean
-//    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-//        return authenticationConfiguration.getAuthenticationManager();
-//    }
-//
-//    @Bean
-//    public AuthenticationManager authManager(HttpSecurity http) throws Exception {
-//        return http.getSharedObject(AuthenticationManagerBuilder.class)
-//                .authenticationProvider(authenticationProvider())
-//                .build();
-//    }
-//
-//    private final UserRepository userRepository;
-//
-//    @Bean
-//    public UserDetailsService userDetailsService() {
-//        return new UserDetailServiceImpl(userRepository);
-//    }
-//
-//
-//    @Bean
-//    public BCryptPasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//
-//    @Bean
-//    public DaoAuthenticationProvider authenticationProvider() {
-//        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-//        authProvider.setUserDetailsService(userDetailsService());
-//        authProvider.setPasswordEncoder(passwordEncoder());
-//        return authProvider;
-//    }
-
-//    @Bean
-//    public SecurityFilterChain filterSecurity(HttpSecurity http) throws Exception {
-//
-//        http
-//                .csrf(AbstractHttpConfigurer::disable)
-//                .authorizeHttpRequests((authorize) -> authorize
-//                        .requestMatchers("/admin_dash").hasRole("ADMIN")
-//                        .requestMatchers("/user_dash").hasRole("USER")
-//                        .requestMatchers("/", "/login", "/register", "/logout").permitAll()
-////                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
-//                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
-//                        .anyRequest().authenticated()
-//                )
-//                .formLogin(
-//                        form -> form
-//                                .loginPage("/login")
-//                                .loginProcessingUrl("/login")
-//                                .defaultSuccessUrl("/")
-//                                .permitAll()
-//                )
-//                .logout(
-//                        logout -> logout
-//                                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-//                                .logoutSuccessUrl("/")
-//                                .permitAll()
-//                );
-//        return http.build();
-//    }
+    public SecurityConfig(UserDetailsService userDetailsService) {
+        this.userDetailsService = userDetailsService;
+    }
 
 
     @Bean
@@ -156,9 +89,10 @@ public class SecurityConfig {
                                 .requestMatchers("/", "/js/**", "/css/**").permitAll()
                                 .requestMatchers("/admin_dash").hasRole("ADMIN")
                                 .requestMatchers("/user_dash").hasRole("USER")
-                                .requestMatchers("/", "/login", "/register", "/logout").permitAll()
+                                .requestMatchers("/", "/login", "/register", "/logout", "/index").permitAll()
 //                        .requestMatchers("/list").hasAnyRole("ADMIN", "USER")
-                                .requestMatchers("/list").permitAll()
+                                .requestMatchers("/list", "/view", "registration", "/api/user").permitAll()
+
 //                        .anyRequest().authenticated()
                                 .anyRequest().permitAll()
                 )
@@ -166,7 +100,7 @@ public class SecurityConfig {
                         form -> form
                                 .loginPage("/login")
                                 .loginProcessingUrl("/login")
-                                .defaultSuccessUrl("/")
+                                .defaultSuccessUrl("/index")
                                 .permitAll()
                 )
 //                .formLogin(form -> form.permitAll())
@@ -174,15 +108,15 @@ public class SecurityConfig {
                 .logout(
                         logout -> logout
                                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                                .logoutSuccessUrl("/")
+                                .logoutSuccessUrl("/index")
                                 .permitAll()
                 );
 
         return http.build();
     }
 
-    @Autowired
-    public UserDetailsService userDetailsService;
+    public final UserDetailsService userDetailsService;
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -194,7 +128,8 @@ public class SecurityConfig {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService);
         authenticationProvider.setPasswordEncoder(passwordEncoder());
-
         return authenticationProvider;
     }
+
+
 }

@@ -3,6 +3,7 @@ networks:
   micrometer:
 
 services:
+
   prometheus:
     image: prom/prometheus
     volumes:
@@ -30,3 +31,14 @@ services:
     networks:
       - micrometer
     restart: always
+
+  spring-app:
+    build:
+      context: .
+    image: spring-boot-prjct-demo:0.1
+    ports:
+      - "8081:8081"
+    networks:
+      - micrometer
+    restart: always
+

@@ -13,6 +13,8 @@ import java.util.Optional;
 public interface UserRepository extends JpaRepository<UserModel, Integer> {
     Optional<UserModel> findByLogin (String login);
 
+
+
     @Query("SELECT u FROM UserModel u WHERE u.login = :login")
     UserModel getUserByLogin(@Param("login") String login);
 }

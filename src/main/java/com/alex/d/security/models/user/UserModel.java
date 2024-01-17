@@ -1,13 +1,14 @@
 package com.alex.d.security.models.user;
 
 import jakarta.persistence.*;
-import lombok.*;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
 @Data

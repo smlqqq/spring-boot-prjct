@@ -1,20 +1,22 @@
-# FROM eclipse-temurin:17-jdk-alpine
-# VOLUME /tmp
-# COPY target/*.jar app.jar
-# ENTRYPOINT ["java","-jar","/app.jar"]
-# EXPOSE 8081
 
+# Используем образ с Java 17
+FROM eclipse-temurin:17-jdk-alpine
 
-
-FROM openjdk:11-jre-slim
-
-
+# Создаем директорию для приложения
 WORKDIR /app
 
+# Копируем исходный код в образ
+COPY src ./src
+COPY pom.xml .
 
+# Собираем приложение с помощью Maven
+RUN ./mvnw clean package
+
+# Копируем собранный jar-файл в образ
 COPY target/*.jar app.jar
 
-
+# Открываем порт 8081
 EXPOSE 8081
 
-CMD ["java", "-jar", "app.jar"]
+# Запускаем приложение с помощью Java
+ENTRYPOINT ["java","-jar","/app.jar"]
