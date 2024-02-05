@@ -1,4 +1,4 @@
-package com.alex.d.security.models.db;
+package com.alex.d.security.entity.db;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

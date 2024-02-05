@@ -1,6 +1,6 @@
 package com.alex.d.security.controller.data;
 
-import com.alex.d.security.models.db.PatientsModel;
+import com.alex.d.security.entity.db.PatientsModel;
 import com.alex.d.security.repositories.db.PatientsRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

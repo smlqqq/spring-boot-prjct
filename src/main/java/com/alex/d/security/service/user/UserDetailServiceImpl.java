@@ -1,29 +1,24 @@
 package com.alex.d.security.service.user;
 
 
-import com.alex.d.security.models.user.MyUserDetails;
-import com.alex.d.security.models.user.RoleModel;
-import com.alex.d.security.models.user.UserModel;
+import com.alex.d.security.entity.user.UserModel;
 import com.alex.d.security.repositories.user.RoleRepository;
 import com.alex.d.security.repositories.user.UserRepository;
-import io.micrometer.common.util.StringUtils;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class UserDetailServiceImpl implements UserDetailsService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-
-
-
 
     public UserDetailServiceImpl(UserRepository userRepository, RoleRepository roleRepository) {
         this.userRepository = userRepository;
@@ -33,17 +28,31 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
 
 
-//    @Override
-//    public UserDetails loadUserByUsername(String login) {
-//        UserModel user = userRepository.findByLogin(login)
-//                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + login));
-//
-//        return User.builder()
-//                .username(user.getLogin())
-//                .password(user.getPassword())
-//                .authorities(user.getAuthorities())
-//                .build();
-//    }
+    @Override
+    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
+        UserModel user = userRepository.findByLogin(login)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with login: " + login));
+
+
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found with login: " + login);
+        }
+
+        List<SimpleGrantedAuthority> authorities = user.getRole() != null ?
+                user.getRole().stream()
+                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName()))
+                        .collect(Collectors.toList()) :
+                Collections.emptyList();
+
+
+
+        return User.builder()
+                .username(user.getLogin())
+                .password(user.getPassword())
+                .authorities(authorities)
+                .build();
+    }
+
 
     public UserModel registerUser(String name, String login, String password) {
         if (name != null && !name.isEmpty() && login != null && !login.isEmpty() && password != null && !password.isEmpty()) {
@@ -57,16 +66,12 @@ public class UserDetailServiceImpl implements UserDetailsService {
             userModel.setLogin(login);
             userModel.setPassword(password);
 
-//            return userRepository.save(userModel);
             return userRepository.save(userModel);
         } else {
             System.out.println("Incorrect data");
             return null;
         }
     }
-
-
-
 
 
 //    @Override
@@ -80,54 +85,6 @@ public class UserDetailServiceImpl implements UserDetailsService {
 ////        return new User(user.getLogin(), user.getPassword(), authorities);
 //        return new MyUserDetails(user);
 //    }
-
-
-
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        UserModel user = userRepository.findByLogin(username)
-//                .orElseThrow(() -> new UsernameNotFoundException("User not found: " + username));
-//
-//        return new org.springframework.security.core.userdetails.User(
-//                user.getLogin(),
-//                user.getPassword(),
-//                getAuthorities(user.getRole())
-//        );
-//    }
-
-    @Override
-    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-
-        UserModel user = userRepository.getUserByLogin(login);
-
-        if (StringUtils.isBlank(login)) {
-            throw new UsernameNotFoundException("Username cannot be empty");
-        }
-
-        return new MyUserDetails(user);
-    }
-    private Collection<? extends GrantedAuthority> getAuthorities(Set<RoleModel> roles) {
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toList());
-    }
-
-
-
-//    public UserDetails loadUserByUsername(String login) throws UsernameNotFoundException {
-//
-//    UserModel details = userRepository.getUserByLogin(login);
-//
-//        UserDetails userDetails =
-//                org.springframework.security.core.userdetails.User.builder()
-//                        .username(details.getLogin())
-//                        .password(details.getPassword())
-//                        .roles(String.valueOf(details.getRole()))
-//                        .build();
-//
-//        return userDetails;
-//    }
-
 
 }
 

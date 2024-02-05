@@ -1,4 +1,4 @@
-package com.alex.d.security.models.user;
+package com.alex.d.security.entity.user;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

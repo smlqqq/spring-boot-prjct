@@ -2,7 +2,7 @@ package com.alex.d.security.controller.user;
 
 
 import com.alex.d.security.SecurityApplication;
-import com.alex.d.security.models.user.UserModel;
+import com.alex.d.security.entity.user.UserModel;
 import com.alex.d.security.service.user.UserDetailServiceImpl;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;

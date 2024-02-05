@@ -1,6 +1,6 @@
 package com.alex.d.security.controller.data;
 
-import com.alex.d.security.models.db.PatientsModel;
+import com.alex.d.security.entity.db.PatientsModel;
 import com.alex.d.security.service.db.PatientService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

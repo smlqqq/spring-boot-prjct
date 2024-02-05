@@ -1,6 +1,6 @@
 package com.alex.d.security;
 
-import com.alex.d.security.models.user.UserModel;
+import com.alex.d.security.entity.user.UserModel;
 import com.alex.d.security.repositories.user.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,7 +13,6 @@ import java.util.Optional;
 
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertTrue;
-import static org.springframework.test.util.AssertionErrors.assertFalse;
 import static org.springframework.test.util.AssertionErrors.assertNotNull;
 
 @RunWith(SpringRunner.class)

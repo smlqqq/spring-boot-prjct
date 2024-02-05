@@ -1,7 +1,7 @@
 package com.alex.d.security.controller.user;
 
 
-import com.alex.d.security.models.user.UserModel;
+import com.alex.d.security.entity.user.UserModel;
 import com.alex.d.security.service.user.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -10,7 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public final class RegistrationController {
@@ -50,23 +49,3 @@ public final class RegistrationController {
 }
 
 
-
-
-//    @PostMapping("/register")
-//    public String register(@ModelAttribute UserModel userModel) {
-//        System.out.println("Register request " + userModel);
-//        String encodedPassword = passwordEncoder.encode(userModel.getPassword());
-//        userModel.setPassword(encodedPassword);
-//        RoleModel userRole = roleRepository.findByName("USER");
-//        if (userRole == null) {
-//            userRole = new RoleModel();
-//            userRole.setName("USER");
-//            roleRepository.save(userRole);
-//        }
-//
-//
-//        UserModel registeredUser = userService.registerUser(userModel.getName(), userModel.getLogin(), userModel.getPassword());
-//        registeredUser.addRole(userRole); // Добавление роли к пользователю
-//        userService.saveUser(registeredUser);
-//   return registeredUser == null ? "err/registration_error" : "redirect:/login";
-//           }
