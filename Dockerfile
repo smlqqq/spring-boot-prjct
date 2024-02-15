@@ -1,4 +1,3 @@
-
 # Используем образ с Java 17
 FROM eclipse-temurin:17-jdk-alpine
 

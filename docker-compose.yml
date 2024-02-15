@@ -1,4 +1,5 @@
 version: '3.1'
+
 networks:
   micrometer:
 
@@ -18,6 +19,7 @@ services:
     networks:
       - micrometer
     restart: always
+    build: prometheus/
 
   grafana:
     image: grafana/grafana
@@ -31,6 +33,8 @@ services:
     networks:
       - micrometer
     restart: always
+    build: grafana/
+
 
   spring-app:
     build:
@@ -41,4 +45,24 @@ services:
     networks:
       - micrometer
     restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://database:5432/ckkttdhb
+      SPRING_DATASOURCE_USERNAME: ckkttdhb
+      SPRING_DATASOURCE_PASSWORD: nozrUH1mHHpvvm8s9L_JPAgb1bm14w20
+      SPRING_DATASOURCE_HIKARI_SCHEMA: hospital_db
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+
+
+  database:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: ckkttdhb
+      POSTGRES_USER: ckkttdhb
+      POSTGRES_PASSWORD: nozrUH1mHHpvvm8s9L_JPAgb1bm14w20
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    build: database/
+
 

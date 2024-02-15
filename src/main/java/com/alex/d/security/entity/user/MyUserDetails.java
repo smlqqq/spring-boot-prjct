@@ -3,6 +3,7 @@ package com.alex.d.security.entity.user;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,7 +11,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-public class MyUserDetails implements UserDetails, Serializable {
+@Service
+public class MyUserDetails implements UserDetails {
     private final UserModel user;
 
     public MyUserDetails(UserModel userModel) {

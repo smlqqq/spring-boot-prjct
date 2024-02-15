@@ -5,12 +5,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
-
+@Component
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -31,6 +33,7 @@ public class UserModel implements Serializable {
 
     @Column(name = "password")
     private String password;
+
 
 
     @Getter

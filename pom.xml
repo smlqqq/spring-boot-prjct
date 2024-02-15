@@ -75,12 +75,12 @@
             <scope>test</scope>
         </dependency>
 
-<!--        &lt;!&ndash; Зависимость для Spring MVC &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework</groupId>-->
-<!--            <artifactId>spring-webmvc</artifactId>-->
-<!--            <version>6.0.7</version>-->
-<!--        </dependency>-->
+        <!-- Зависимость для Spring MVC -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>6.0.7</version>
+        </dependency>
 
         <!-- Зависимость для Spring Test -->
         <dependency>

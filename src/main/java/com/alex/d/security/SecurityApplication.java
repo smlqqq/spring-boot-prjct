@@ -1,10 +1,9 @@
 package com.alex.d.security;
 
 import io.micrometer.core.instrument.MeterRegistry;
-
+import lombok.Value;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.actuate.autoconfigure.metrics.MeterRegistryCustomizer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,10 +35,10 @@ private final static Logger LOGGER = LogManager.getLogger(SecurityApplication.cl
         return registry -> registry.config().commonTags("application", "spring-boot-prjct");
     }
 
-    @Bean
-    MeterRegistryCustomizer<MeterRegistry> configurer(
-            @Value("${spring.application.name}") String applicationName) {
-        return (registry) -> registry.config().commonTags("application", applicationName);
-    }
+//    @Bean
+//    MeterRegistryCustomizer<MeterRegistry> configurer(
+//            @Value("${spring.application.name}") String applicationName) {
+//        return (registry) -> registry.config().commonTags("application", applicationName);
+//    }
 
 }
